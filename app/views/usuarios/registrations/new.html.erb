@@ -1,0 +1,55 @@
+<h2>Registrar un nuevo Usuario</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+               <% resource.errors.full_messages.each do |message| %>
+                <div class="alert alert-danger"><%= message %></div>
+                <% end %>
+                <!-- <div class="alert alert-danger"> <%= devise_error_messages! %></div> -->
+                
+      <div class="field">
+        <%= f.label "Correo electronico" %><br />
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Contraseña" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label "Confirmar contraseña" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label "Nombres" %><br />
+        <%= f.text_field :nombres, class: 'form-control' %>
+      </div>
+       <div class="field">
+        <%= f.label "Apellidos" %><br />
+        <%= f.text_field :apellidos, class: 'form-control' %>
+      </div>
+       <div class="field">
+        <%= f.label "Rol de Usuario" %><br />
+        <%= f.select :rol, rol_usuario, { include_blank: 'Seleccionar rol de usuario' }, class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label "Habilitado" %><br />
+        <%= check_box_tag "es_habilitado", "SI", true, class: 'form-control'  %> 
+      </div>
+
+      <div class="actions btn-group">
+        <%= f.submit "Guardar Usuario", class: 'btn btn-info ' %>
+      </div>
+      <div class="btn-group">
+        <%= link_to 'Cancelar', root_path, class: 'btn btn-info '  %>
+        </div>
+    <% end %>
+ </div>
+  </div>
+<!-- 
+<%= render "usuarios/shared/links" %>
+ -->

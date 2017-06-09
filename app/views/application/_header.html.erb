@@ -6,11 +6,13 @@
     
 
 
-    <!-- <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-brand navbar-right">
-          <p>Salir</p>
+    <% if usuario_signed_in? %>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Logout', destroy_usuario_session_path, method: :delete %></li>
         </ul>
-    </div> -->
+      </div>
+    <% end %>
   </div>
 
 </nav>
