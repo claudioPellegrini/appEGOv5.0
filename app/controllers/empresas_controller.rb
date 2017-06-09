@@ -20,7 +20,6 @@ class EmpresasController < ApplicationController
   # GET /empresas/1/edit
   def edit
     @empresa.nombre =  @empresa.nombre.upcase
-    @empresa.razon_social =  @empresa.nombre.upcase
   end
 
   # POST /empresas
@@ -28,7 +27,6 @@ class EmpresasController < ApplicationController
   def create
     @empresa = Empresa.new(empresa_params)
     @empresa.nombre =  @empresa.nombre.upcase
-    @empresa.razon_social =  @empresa.nombre.upcase
     respond_to do |format|
       if @empresa.save
         format.html { redirect_to @empresa, notice: 'La Empresa se ha creado correctamente.' }
