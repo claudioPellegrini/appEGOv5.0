@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'header' %>
+    
+    <div class="container-fluid">
+      <div class="col-md-8 col-md-offset-2">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+  
+</html>

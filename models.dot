@@ -1,0 +1,9 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true, bgcolor="none"]
+	"ApplicationRecord" []
+	"Bebida" [shape=Mrecord, label="{Bebida|id :integer\lnombre :character varying\ltipo :character varying\ltamanio :character varying\lprecio :numeric\lcreated_at :timestamp without time zone\lupdated_at :timestamp without time zone\l}"]
+	"Franja" [shape=Mrecord, label="{Franja|id :integer\lfecha :timestamp without time zone\lprimera_hasta :numeric\lprimera_precio :numeric\lsegunda_hasta :numeric\lsegunda_precio :numeric\ltercera_precio :numeric\lcreated_at :timestamp without time zone\lupdated_at :timestamp without time zone\l}"]
+	"Producto" [shape=Mrecord, label="{Producto|id :integer\lnombre :character varying\ldescripcion :text\lcreated_at :timestamp without time zone\lupdated_at :timestamp without time zone\ltipo_id :integer\lprecio :numeric\l}"]
+	"Tipo" [shape=Mrecord, label="{Tipo|id :integer\lnombre :character varying\ldescripcion :text\lcreated_at :timestamp without time zone\lupdated_at :timestamp without time zone\l}"]
+	"Tipo" -> "Producto" [arrowtail=odot, arrowhead=crow, dir=both color="#EF9040"]
+}

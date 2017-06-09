@@ -1,0 +1,26 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rut: 123456789012
+  nombre: MyString
+  razon_social: MyString
+  telefono: 1234
+  direccion: MyString
+  email: mauge58@gmail.com
+
+two:
+  rut: 1234567891013
+  nombre: MyString
+  razon_social: MyString
+  telefono: 123456
+  direccion: MyString
+  email: gabo@gmail.com
+
+three:
+  rut: 1234567891014
+  nombre: MyString
+  razon_social: MyString
+  telefono: 1234567
+  direccion: MyString
+  email: gabo@gmail.com
+  

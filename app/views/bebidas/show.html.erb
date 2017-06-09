@@ -1,0 +1,26 @@
+
+
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @bebida.nombre %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @bebida.tipo %>
+</p>
+
+<p>
+  <strong>Tamaño:</strong>
+  <%= @bebida.tamanio %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @bebida.precio %>
+</p>
+<div class="btn-group-vertical">
+<%= link_to 'Editar', edit_bebida_path(@bebida), class: 'btn btn-default' %> 
+<%= link_to 'Volver', bebidas_path, class: 'btn btn-info' %>
+</div>

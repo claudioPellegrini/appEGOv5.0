@@ -1,0 +1,39 @@
+<%= form_for(producto) do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% producto.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger"><%= message %></div>
+      <% end %>
+
+      <div class="panel-body form-group">
+        <p><%= f.label :nombre %></p>
+        <%= f.text_field :nombre, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :descripcion %></p>
+    <%= f.text_area :descripcion, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+    <p><%= f.label :tipo_id %></p>
+    <%= f.select :tipo_id,  Tipo.all.collect {|t| [ t.nombre, t.id ] }, { include_blank: 'Seleccionar Tipo de Producto' }, class: 'form-control' %>
+  </div>
+  </br>
+  <div class="panel-body form-group">
+    <p><%= f.label :precio %></p>
+    <%= f.number_field :precio, :step => "0.5", min: 0, class: 'form-control' %>
+  </div>
+  </br>
+    <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        
+        <div class="btn-group">
+        <%= f.submit "Guardar Producto", class: 'btn btn-info ' %>
+        </div>
+        <div class="btn-group">
+        <%= link_to 'Cancelar', productos_path, class: 'btn btn-info'  %>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+    

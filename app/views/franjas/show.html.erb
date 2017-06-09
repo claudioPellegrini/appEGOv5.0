@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @franja.fecha.to_formatted_s(:short) %>
+</p>
+
+<p>
+  <strong>Sueldos hasta:</strong>
+  <%= @franja.primera_hasta %>
+</p>
+
+<p>
+  <strong>Valor del ticket:</strong>
+  <%= @franja.primera_precio %>
+</p>
+
+<p>
+  <strong>Sueldos mayores a </strong><%= @franja.primera_hasta %><strong> y hasta:</strong>
+  <%= @franja.segunda_hasta %>
+</p>
+
+<p>
+  <strong>Valor del ticket:</strong>
+  <%= @franja.segunda_precio %>
+</p>
+<p>
+  <strong>Sueldos mayores a </strong><%= @franja.segunda_hasta %>
+</p>
+<p>
+  <strong>Valor del ticket:</strong>
+  <%= @franja.tercera_precio %>
+</p>
+</br>
+<div class="btn-group-vertical">
+<%= link_to 'Editar', edit_franja_path(@franja), class: 'btn btn-default' %> 
+<%= link_to 'Volver', franjas_path, class: 'btn btn-info' %>
+</div>

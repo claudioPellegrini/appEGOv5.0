@@ -1,0 +1,45 @@
+
+<%= form_for(bebida) do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% bebida.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger"><%= message %></div>
+      <% end %>
+
+      <div class="panel-body form-group">
+        <p><%= f.label :nombre %></p>
+        <%= f.text_field :nombre, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :tipo %></p>
+         <%= f.select :tipo, tipo_bebidas, { include_blank: 'Seleccionar tipo de bebida' }, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label 'Tamaño' %></p>
+         <%= f.select :tamanio, tamanio_bebidas, { include_blank: 'Seleccionar tamaño' }, class: 'form-control' %>
+      </div>
+      
+  </br>
+  <div class="panel-body form-group">
+    <p><%= f.label :precio %></p>
+    <%= f.number_field :precio, min: 0, class: 'form-control' %>
+  </div>
+  </br>
+
+    
+    <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        
+        <div class="btn-group">
+        <%= f.submit "Guardar Bebida", class: 'btn btn-info ' %>
+        </div>
+        <div class="btn-group">
+        <%= link_to 'Cancelar', bebidas_path, class: 'btn btn-info '  %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+

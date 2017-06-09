@@ -1,0 +1,50 @@
+<%= form_for(empresa) do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% empresa.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger"><%= message %></div>
+      <% end %>
+      <div class="panel-body form-group">
+        <p><%= f.label :rut %></p>
+        <%= f.number_field :rut, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :nombre %></p>
+        <%= f.text_field :nombre, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :razon_social %></p>
+        <%= f.text_field :razon_social, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :telefono %></p>
+        <%= f.number_field :telefono, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :direccion %></p>
+        <%= f.text_field :direccion, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <p><%= f.label :email %></p>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+  </br>
+  
+
+    
+    <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        
+        <div class="btn-group">
+        <%= f.submit "Guardar Empresa", class: 'btn btn-info ' %>
+        </div>
+        <div class="btn-group">
+        <%= link_to 'Cancelar', empresas_path, class: 'btn btn-info '  %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+

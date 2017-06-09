@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>RUT:</strong>
+  <%= @empresa.rut %>
+</p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @empresa.nombre %>
+</p>
+
+<p>
+  <strong>Razon Social:</strong>
+  <%= @empresa.razon_social %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @empresa.telefono %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @empresa.direccion %>
+</p>
+<p>
+  <strong>Correo electronico:</strong>
+  <%= @empresa.email %>
+</p>
+<div class="btn-group-vertical">
+<%= link_to 'Editar', edit_empresa_path(@empresa), class: 'btn btn-default' %> 
+<%= link_to 'Volver', empresas_path, class: 'btn btn-info' %>
+</div>

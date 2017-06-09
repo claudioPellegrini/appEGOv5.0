@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @menu.fecha %>
+</p>
+<p>
+  
+  <% @menu.productos %>
+</p>
+<% @tipos.each do |t| %>
+      <p><label><%= t.nombre %></label></p>
+	<% @menu.productos.each do |producto| %>
+  		<%if producto.tipo && producto.tipo.nombre==t.nombre %>        
+          <div class="field">
+            <p><%= producto.nombre if producto %></p>            
+          </div>
+          <br>
+        <%else%>
+      
+   		<%end%>
+
+	<%end%>
+<%end%>
+
+<div class="btn-group-vertical">
+<%= link_to 'Editar', edit_menu_path(@menu) , class: 'btn btn-default' %>
+<%= link_to 'Volver', menus_path , class: 'btn btn-info' %>
+</div>

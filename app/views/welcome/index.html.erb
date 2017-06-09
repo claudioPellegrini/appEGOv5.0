@@ -1,0 +1,28 @@
+<h2>Hola Administrador!</h2>
+
+
+
+ 
+</br>
+<div>
+  <ul class="list-unstyled">
+    <li class><%= link_to 'Tipos de Producto', tipos_path, class: 'btn btn-default btn-lg btn-block' %></li>
+    </br>
+      	
+    <li><%= link_to 'Productos', productos_path, class: 'btn btn-default btn-lg btn-block'  %></li>
+    </br>
+      
+    <li><%= link_to 'Bebidas', bebidas_path, class: 'btn btn-default btn-lg btn-block'  %></li>
+    </br>
+
+    <li><%= link_to 'Franjas', franjas_path, class: 'btn btn-default btn-lg btn-block'  %></li>
+    </br>
+    <li><%= link_to 'Empresas', empresas_path, class: 'btn btn-default btn-lg btn-block'  %></li>
+    </br>
+    <li><%= link_to 'Menus', menus_path, class: 'btn btn-default btn-lg btn-block'  %></li>
+    </br>
+  </ul>	
+</div>
+
+
+ <%= render 'footer' %>
