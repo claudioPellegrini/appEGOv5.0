@@ -25,6 +25,10 @@
         <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
       </div>
       <div class="field">
+        <%= f.label "CI" %><br />
+        <%= f.number_field :ci, class: 'form-control' %>
+      </div>
+      <div class="field">
         <%= f.label "Nombres" %><br />
         <%= f.text_field :nombres, class: 'form-control' %>
       </div>
@@ -32,14 +36,14 @@
         <%= f.label "Apellidos" %><br />
         <%= f.text_field :apellidos, class: 'form-control' %>
       </div>
-      <!--  <div class="field">
+      <!-- <div class="field">
         <%= f.label "Rol de Usuario" %><br />
         <%= f.select :rol, rol_usuario, { include_blank: 'Seleccionar rol de usuario' }, class: 'form-control' %>
-      </div>
+      </div> -->
       <div class="field">
         <%= f.label "Habilitado" %><br />
-        <%= check_box_tag "es_habilitado", "SI", true, class: 'form-control'  %> 
-      </div> -->
+        <%= f.check_box :habilitado, { :checked => true}  %> 
+      </div> 
 
       <div class="actions btn-group">
         <%= f.submit "Guardar Usuario", class: 'btn btn-info ' %>
