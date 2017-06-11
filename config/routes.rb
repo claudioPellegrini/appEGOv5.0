@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :franjas
   resources :productos
   resources :tipos
+  resources :usuarios
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
