@@ -16,7 +16,7 @@ gem 'puma', '~> 3.0'
 gem 'bootstrap-sass'
 gem 'devise'
 
-
+gem 'rails-i18n'
 gem 'railroady'
 
 gem 'sass-rails', '~> 5.0'
