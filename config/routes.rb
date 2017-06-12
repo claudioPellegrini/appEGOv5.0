@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
 
+  resources :venta
+  resources :stocks
+  resources :movimientos
   devise_for :usuarios
   resources :menus do
   	resources :productos
   end
 
   resources :empresas
-
+  resources :venta
   get 'welcome/index'
 
   resources :bebidas

@@ -7,5 +7,5 @@ class Usuario < ApplicationRecord
   validates :nombres, presence: {message: "^Debe ingresar sus nombres"}
   validates :apellidos, presence: {message: "^Debe ingresar sus apellidos"}
   validates :rol, presence: {message: "^Debe seleccionar un rol"}
-  
+  has_many :venta
 end

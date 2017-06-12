@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609172833) do
+ActiveRecord::Schema.define(version: 20170612151929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20170609172833) do
     t.index ["fecha"], name: "index_menus_on_fecha", unique: true, using: :btree
   end
 
+  create_table "movimientos", force: :cascade do |t|
+    t.integer  "id_bebida"
+    t.datetime "fecha"
+    t.integer  "cant"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "productos", force: :cascade do |t|
     t.string   "nombre"
     t.text     "descripcion"
@@ -61,6 +69,13 @@ ActiveRecord::Schema.define(version: 20170609172833) do
     t.integer  "tipo_id"
     t.decimal  "precio"
     t.index ["tipo_id"], name: "index_productos_on_tipo_id", using: :btree
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "id_producto"
+    t.integer  "saldo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tiene_productos", force: :cascade do |t|
@@ -99,6 +114,13 @@ ActiveRecord::Schema.define(version: 20170609172833) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "venta", force: :cascade do |t|
+    t.integer  "menu_id"
+    t.integer  "bebida_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "productos", "tipos"
