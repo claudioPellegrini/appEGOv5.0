@@ -1,0 +1,41 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1>usuarios</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="listing">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Ci</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Rol</th>
+              <th>Habilitado</th>              
+              <th>Empresa</th>
+            </tr>
+        </thead>
+      
+        <tbody>
+                <%= render @usuarios %>
+        </tbody>
+      </table>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+<br><div class="col-md-12">
+  <div class="btn-group btn-group-justified">
+  <% if @div_admin %>
+    <%= link_to 'Nuevo Usuario', new_usuario_path, class: 'btn btn-default'  %>
+  <% end %>
+    <%= link_to 'Volver', root_path, class: 'btn btn-default' %>
+
+  </div>
+   
+</div>

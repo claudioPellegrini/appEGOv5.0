@@ -22,6 +22,7 @@ module ApplicationHelper
 		['1.25'],
   	]
   end
+
   def rol_usuario
   	[	
 		['ADMINISTRADOR'],

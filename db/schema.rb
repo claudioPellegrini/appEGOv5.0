@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612151929) do
+ActiveRecord::Schema.define(version: 20170612230554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 20170612151929) do
     t.decimal  "precio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cuenta", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_cuenta_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_cuenta_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "empresas", force: :cascade do |t|
@@ -95,25 +112,16 @@ ActiveRecord::Schema.define(version: 20170612151929) do
   end
 
   create_table "usuarios", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
     t.integer  "ci"
     t.string   "nombres"
     t.string   "apellidos"
     t.string   "rol"
     t.boolean  "habilitado"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "empresa_id"
+    t.integer  "cuenta_id"
+    t.index ["empresa_id"], name: "index_usuarios_on_empresa_id", using: :btree
   end
 
   create_table "venta", force: :cascade do |t|
@@ -126,4 +134,5 @@ ActiveRecord::Schema.define(version: 20170612151929) do
   add_foreign_key "productos", "tipos"
   add_foreign_key "tiene_productos", "menus"
   add_foreign_key "tiene_productos", "productos"
+  add_foreign_key "usuarios", "empresas"
 end

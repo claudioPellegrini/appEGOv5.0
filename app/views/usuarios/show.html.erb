@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ci:</strong>
+  <%= @usuario.ci %>
+</p>
+
+<p>
+  <strong>Nombres:</strong>
+  <%= @usuario.nombres %>
+</p>
+
+<p>
+  <strong>Apellidos:</strong>
+  <%= @usuario.apellidos %>
+</p>
+
+<p>
+  <strong>Rol:</strong>
+  <%= @usuario.rol %>
+</p>
+
+<p>
+  <strong>Habilitado:</strong>
+  <%= @usuario.habilitado %>
+</p>
+
+<div class="btn-group-vertical">
+<%= link_to 'Editar', edit_usuario_path(@usuario), class: 'btn btn-default' %> 
+<%= link_to 'Volver', usuarios_path, class: 'btn btn-info' %>
+</div>
+

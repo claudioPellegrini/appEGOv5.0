@@ -19,7 +19,6 @@ class TiposController < ApplicationController
 
   # GET /tipos/1/edit
   def edit
-    @tipo.nombre =  @tipo.nombre.upcase
   end
 
   # POST /tipos

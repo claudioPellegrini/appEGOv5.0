@@ -1,0 +1,47 @@
+<%= form_for(usuario) do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% usuario.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger"><%= message %></div>
+      <% end %>
+    </div>
+      <div class="panel-body form-group">
+        <%= f.label "CI" %><br />
+        <%= f.number_field :ci, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <%= f.label "Nombres" %><br />
+        <%= f.text_field :nombres, class: 'form-control' %>
+      </div>
+       <div class="panel-body form-group">
+        <%= f.label "Apellidos" %><br />
+        <%= f.text_field :apellidos, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <%= f.label "Rol de Usuario" %><br />
+        <%= f.select :rol, rol_usuario, { include_blank: 'Seleccionar rol de usuario' }, class: 'form-control' %>
+      </div>
+      <div class="panel-body form-group">
+        <%= f.label "Habilitado" %><br />
+        <%= f.check_box :habilitado, { :checked => true}  %> 
+      </div> 
+       <div class="panel-body form-group">
+        <p><%= f.label :empresa_id %></p>
+        <%= f.select :empresa_id,  Empresa.all.collect {|e| [ e.nombre, e.id ] }, { include_blank: 'Seleccionar empresa' }, class: 'form-control' %>
+        </div>
+        </br>
+        <div class="panel-body form-group">
+      <p><%= f.label :cuenta_id %></p>
+        <%= f.select :cuenta_id,  Cuentum.all.collect {|t| [ t.email, t.id ] }, { include_blank: 'Seleccionar cuenta' }, class: 'form-control' %>
+       </div>
+       </br>
+        <div class="btn-group">
+         <%= f.submit "Guardar Usuario", class: 'btn btn-info' %>
+        </div>
+        <div class="btn-group">
+          <%= link_to 'Cancelar', usuarios_path, class: 'btn btn-info '  %>
+        </div>
+      </div>
+    
+  </div>
+<% end %>

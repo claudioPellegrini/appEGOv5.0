@@ -21,7 +21,6 @@ class ProductosController < ApplicationController
 
   # GET /productos/1/edit
   def edit
-    @producto.nombre =  @producto.nombre.upcase
   end
 
   # POST /productos

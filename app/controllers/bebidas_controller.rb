@@ -19,14 +19,13 @@ class BebidasController < ApplicationController
 
   # GET /bebidas/1/edit
   def edit
-    @bebida.nombre =  @bebida.nombre.upcase
   end
 
   # POST /bebidas
   # POST /bebidas.json
   def create
     @bebida = Bebida.new(bebida_params)
-     @bebida.nombre =  @bebida.nombre.upcase
+    @bebida.nombre =  @bebida.nombre.upcase
     respond_to do |format|
       if @bebida.save
         format.html { redirect_to @bebida, notice: 'La Bebida se ha creado correctamente.' }

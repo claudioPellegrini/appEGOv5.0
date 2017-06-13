@@ -1,4 +1,6 @@
 class Empresa < ApplicationRecord
+has_many :usuarios
+
 	validates :rut, presence: {message: "^Debe ingresar un RUT"}
 	validates :rut, length: { in: 12..12, message: "^Debe ingresar 12 digitos para el RUT"}
 	validates :rut, uniqueness: {message: "^Ese RUT ya se encuentra registrado "}

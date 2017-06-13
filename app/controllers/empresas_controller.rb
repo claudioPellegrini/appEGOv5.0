@@ -19,7 +19,6 @@ class EmpresasController < ApplicationController
 
   # GET /empresas/1/edit
   def edit
-    @empresa.nombre =  @empresa.nombre.upcase
   end
 
   # POST /empresas
