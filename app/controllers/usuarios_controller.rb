@@ -42,25 +42,19 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   # POST /usuarios.json
   def create
-    @usuarios = Usuario.all
-    @usuarios.each do |u| 
-      
-        
-          @usuario = Usuario.new(usuario_params)
-          @usuario.nombres =  @usuario.nombres.upcase
-          @usuario.apellidos =  @usuario.apellidos.upcase
-          respond_to do |format|
-            if @usuario.save
-              format.html { redirect_to @usuario, notice: 'El Usuario se ha creado correctamente.' }
-              format.json { render :show, status: :created, location: @usuario }
-            else
-              format.html { render :new }
-              format.json { render json: @usuario.errors, status: :unprocessable_entity }
-            end
-          end
-        
-      
-    end
+      @usuario = Usuario.new(usuario_params)
+      @usuario.nombres =  @usuario.nombres.upcase
+      @usuario.apellidos =  @usuario.apellidos.upcase
+      respond_to do |format|
+        if @usuario.save
+          format.html { redirect_to @usuario, notice: 'El Usuario se ha creado correctamente.' }
+          format.json { render :show, status: :created, location: @usuario }
+        else
+          format.html { render :new }
+          format.json { render json: @usuario.errors, status: :unprocessable_entity }
+        end
+      end
+    
   end
 
   # PATCH/PUT /usuarios/1
