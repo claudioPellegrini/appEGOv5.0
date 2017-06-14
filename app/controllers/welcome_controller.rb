@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   	@usuarios.each do |u| 
         if cuentum_signed_in? && current_cuentum.id == u.cuenta_id
   			@nombre = u.nombres
-  			if u.rol == "ADMINISTRADOR"
+  			if u.rol == "ADMINISTRADOR" || current_cuentum = "admin@admin.com"
   				@div_admin = true
   			end
 	  		if u.rol == "USUARIO" 

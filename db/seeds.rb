@@ -4,4 +4,12 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+#paso 1
+
+	# Cuentum.create(email: 'admin@admin.com', encrypted_password: 'sacala' )
+	# Empresa.create(rut: 0, nombre: 'eattinggo', razon_social: 'eattinggo', telefono: 91814355, direccion: 'calle asignada', email: 'info@eattinggo.com'  )
+ 
+
+#paso 2
+ # Usuario.create(ci: 99999999, nombres: 'admin', apellidos: 'admin', rol: 'ADMINISTRADOR', habilitado: true, empresa_id: 1, cuenta_id: 1)
