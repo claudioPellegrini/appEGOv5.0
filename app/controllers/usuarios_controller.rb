@@ -4,6 +4,10 @@ class UsuariosController < ApplicationController
   # GET /usuarios
   # GET /usuarios.json
   def index
+    if current_cuentum.email = "admin@admin.com"
+      @usuarios = Usuario.all
+      @div_admin = true
+    end
     @usuariosAux = Usuario.all
     @cuentas = Cuentum.all
     @usuariosAux.each do |u| 
@@ -40,8 +44,8 @@ class UsuariosController < ApplicationController
   def create
     @usuarios = Usuario.all
     @usuarios.each do |u| 
-      if cuentum_signed_in? && current_cuentum.id == u.cuenta_id
-        if u.rol == "ADMINISTRADOR"
+      
+        
           @usuario = Usuario.new(usuario_params)
           @usuario.nombres =  @usuario.nombres.upcase
           @usuario.apellidos =  @usuario.apellidos.upcase
@@ -54,8 +58,8 @@ class UsuariosController < ApplicationController
               format.json { render json: @usuario.errors, status: :unprocessable_entity }
             end
           end
-        end
-      end
+        
+      
     end
   end
 

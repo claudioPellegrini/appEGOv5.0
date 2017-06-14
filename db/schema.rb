@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 20170612230554) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "fringes", force: :cascade do |t|
+    t.datetime "fecha"
+    t.decimal  "primera_hasta"
+    t.decimal  "primera_precio"
+    t.decimal  "segunda_hasta"
+    t.decimal  "segunda_precio"
+    t.decimal  "tercera_precio"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "menus", force: :cascade do |t|
     t.date     "fecha"
     t.datetime "created_at", null: false
@@ -122,13 +133,6 @@ ActiveRecord::Schema.define(version: 20170612230554) do
     t.integer  "empresa_id"
     t.integer  "cuenta_id"
     t.index ["empresa_id"], name: "index_usuarios_on_empresa_id", using: :btree
-  end
-
-  create_table "venta", force: :cascade do |t|
-    t.integer  "menu_id"
-    t.integer  "bebida_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "productos", "tipos"
