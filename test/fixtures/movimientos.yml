@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_bebida: 1
+  fecha: 2017-06-14 23:26:45
+  cant: 1
+
+two:
+  id_bebida: 1
+  fecha: 2017-06-14 23:26:45
+  cant: 1

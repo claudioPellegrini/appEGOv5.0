@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612230554) do
+ActiveRecord::Schema.define(version: 20170615031409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,17 +53,6 @@ ActiveRecord::Schema.define(version: 20170612230554) do
   end
 
   create_table "franjas", force: :cascade do |t|
-    t.datetime "fecha"
-    t.decimal  "primera_hasta"
-    t.decimal  "primera_precio"
-    t.decimal  "segunda_hasta"
-    t.decimal  "segunda_precio"
-    t.decimal  "tercera_precio"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  create_table "fringes", force: :cascade do |t|
     t.datetime "fecha"
     t.decimal  "primera_hasta"
     t.decimal  "primera_precio"
@@ -135,8 +124,21 @@ ActiveRecord::Schema.define(version: 20170612230554) do
     t.index ["empresa_id"], name: "index_usuarios_on_empresa_id", using: :btree
   end
 
+  create_table "venta", force: :cascade do |t|
+    t.integer  "menu_id"
+    t.integer  "bebida_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "usuario_id"
+    t.integer  "cuentum_id"
+    t.index ["cuentum_id"], name: "index_venta_on_cuentum_id", using: :btree
+    t.index ["usuario_id"], name: "index_venta_on_usuario_id", using: :btree
+  end
+
   add_foreign_key "productos", "tipos"
   add_foreign_key "tiene_productos", "menus"
   add_foreign_key "tiene_productos", "productos"
   add_foreign_key "usuarios", "empresas"
+  add_foreign_key "venta", "cuenta"
+  add_foreign_key "venta", "usuarios"
 end

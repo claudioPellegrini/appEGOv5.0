@@ -15,7 +15,7 @@ gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass'
 gem 'devise'
-
+gem 'rails-i18n'
 gem 'railroady'
 
 gem 'sass-rails', '~> 5.0'

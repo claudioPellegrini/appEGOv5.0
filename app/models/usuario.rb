@@ -2,6 +2,7 @@ class Usuario < ApplicationRecord
 belongs_to :empresa, optional: true
 belongs_to :cuenta, optional: true
 
+
 	validates :ci, presence: {message: "^Debe ingresar su cedula de identidad"}
 	validates :ci, length: { in: 7..8, message: "^Debe ingresar 7 u 8 digitos para la CI"}
 	validates :ci, uniqueness: {message: "^Esa cedula ya se encuentra registrada "}

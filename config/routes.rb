@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :venta
+  resources :stocks
+  resources :movimientos
   devise_for :cuenta 
 
   resource :cuenta, only: [:edit] do
@@ -16,6 +19,7 @@ end
   end
 
   resources :empresas
+  resources :venta
 
   get 'welcome/index'
 
