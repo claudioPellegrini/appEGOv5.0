@@ -14,11 +14,13 @@
   <tbody>
     <% @venta.each do |ventum| %>
       <tr>
-        <td><%= ventum.menu_id %></td>
-        <td><%= ventum.bebida_id %></td>
-        <td><%= link_to 'Show', ventum %></td>
-        <td><%= link_to 'Edit', edit_ventum_path(ventum) %></td>
-        <td><%= link_to 'Destroy', ventum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= ventum.menu.fecha %></td>
+        <% if ventum.bebida_id.present? %>
+        <td><%= ventum.bebida.nombre %></td>
+        <%end%>
+        <td><%= link_to 'Mostrar', ventum %></td>
+        <td><%= link_to 'Editar', edit_ventum_path(ventum) %></td>
+        <td><%= link_to 'Eliminar', ventum, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Ventum', new_ventum_path %>
+<%= link_to 'Nueva Venta', new_ventum_path %>

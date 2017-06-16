@@ -1,29 +1,1 @@
-<%= form_for(ventum) do |f| %>
-  <% if ventum.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ventum.errors.count, "error") %> prohibited this ventum from being saved:</h2>
-
-      <ul>
-      <% ventum.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="panel-body form-group">
-    <p><%= f.label :menu_id %></p>
-    <%= f.select :menu_id,  Menu.all.collect {|t| [ t.fecha, t.id ] }, { include_blank: 'Seleccionar Menu' }, class: 'form-control' %>
-  </div>
-  </br>
-  
-  <div class="panel-body form-group">
-    <p><%= f.label :bebida_id %></p>
-    <%= f.select :bebida_id,  Bebida.all.collect {|t| [ t.nombre, t.id ] }, { include_blank: 'Seleccionar Bebida' }, class: 'form-control' %>
-  </div>
-  </br>
-  
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= form_for(ventum) do |f| %>  <% if ventum.errors.any? %>    <div id="error_explanation">      <h2><%= pluralize(ventum.errors.count, "error") %> prohibited this ventum from being saved:</h2>      <ul>      <% ventum.errors.full_messages.each do |message| %>        <li><%= message %></li>      <% end %>      </ul>    </div>  <% end %>  <div class="panel-body form-group">    <p><%= f.label :menu_id %></p>    <%= f.select :menu_id,  Menu.all.collect {|t| [ t.fecha, t.id ] }, { include_blank: 'Seleccionar Menu' }, class: 'form-control' %>  </div>  </br>    <div class="panel-body form-group">    <p><%= f.label :bebida_id %></p>    <%= f.select :bebida_id,  Bebida.all.collect {|t| [ t.nombre, t.id ] }, { include_blank: 'Seleccionar Bebida' }, class: 'form-control' %>  </div>  </br>  <!-- <div class="panel-body form-group">    <h1>Probando1</h1>    <% if ventum.menu_id.present? %>    <h1>Probando2</h1>    <% menu_id.productos.tipos.each do |t| %>                      <div class="field">            <%= check_box_tag "productos[]", producto.id, chequeada(producto.id)  %> <%= producto.nombre %>                      </div>          <br>          <%end%>    <%end%>  </div> -->  </br>    <div class="actions">    <%= f.submit %>  </div><% end %>

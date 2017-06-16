@@ -1,0 +1,9 @@
+Menu del dia:  <%= @menu.fecha %>
+
+Hoy tenemos para ofrecerte:
+    
+    <% @menu.productos.each do |producto| %>
+    
+            <%= producto.nombre %>         
+    
+    <% end %>
