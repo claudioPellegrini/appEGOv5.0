@@ -7,6 +7,7 @@ class VentaController < ApplicationController
     @venta = current_cuentum.venta
     @bebidas = Bebida.all
     @menus = Menu.all
+    #@productos = Productos.all
   end
 
   # GET /venta/1
