@@ -16,7 +16,9 @@ class MenusController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf{render template: 'menus/menudeldia', pdf: 'Menudeldia' }
+      format.pdf{render template: 'menus/menudeldia.pdf.erb', pdf: 'menudeldia'} #, :save_to_file => Rails.root.join('public', "Menudeldia.pdf"),
+       #:save_only    => true, type: 'application/pdf' }
+       
     end
   end
 
@@ -53,8 +55,7 @@ class MenusController < ApplicationController
     else
       respond_to do |format|
         if @menu.save
-          # redirect_to menus/menudeldia.pdf
-          #enviar_correos
+          crear_pdfs_menu          
           format.html { redirect_to @menu, notice: 'El Menu se ha creado correctamente .' }
           format.json { render :show, status: :created, location: @menu }
         else
@@ -91,10 +92,31 @@ class MenusController < ApplicationController
     end
   end
 
+
+  # CREAR PDF MENUS
+  def crear_pdfs_menu
+    @menus = Menu.order('fecha DESC').all
+    @menus.each do |m|
+      if Time.now.to_date <= m.fecha.to_date
+         @menu = m
+       end
+     end
+    pdf = WickedPdf.new.pdf_from_string( 
+      render_to_string( :template => 'menus/menudeldia.pdf.erb' ))
+    save_path = Rails.root.join('public','Menudeldia.pdf')
+      File.open(save_path, 'wb') do |file|
+        file << pdf
+      end
+    enviar_correos
+  end
+
+
+
+  # ENVIAR CORREOS A LISTA DE USUARIOS
    def enviar_correos 
     @cuentas = Cuentum.all
     @coma = "; "
-    @destinatarios = "ladeclaudio@gmail.com" + "; "
+    @destinatarios = "ladeclaudio@gmail.com; mauge58@gmail.com; "
     @cuentas.each do |c|         
           @correos = c.email + @coma
           @destinatarios << @correos

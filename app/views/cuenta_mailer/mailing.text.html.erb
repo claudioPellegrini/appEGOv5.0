@@ -3,42 +3,4 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h1>Menu del dia</h1>
-    <p>
-      <%= @menu.fecha %>
-    </p>
-    <p>
-      Hoy tenemos para ofrecerte:
-    </p>
-    <% @menu.productos.each do |producto| %>
-    <div class="field">
-            <p><%= producto.nombre %></p>            
-     </div>
-          <br>
-     <%end%>
-  </body>
-</html>
-
-<!-- <p>
-  <strong>Fecha:</strong>
-  
-</p>
-<p>
-  
-  <% @menu.productos %>
-</p>
-<% @tipos.each do |t| %>
-      <p><label><%= t.nombre %></label></p>
-	<% @menu.productos.each do |producto| %>
-  		<%if producto.tipo && producto.tipo.nombre==t.nombre %>        
-          <div class="field">
-            <p><%= producto.nombre if producto %></p>            
-          </div>
-          <br>
-        <%else%>
-      
-   		<%end%>
-
-	<%end%>
-<%end%> -->
+Menu del dia:  <%= @menu.fecha %>

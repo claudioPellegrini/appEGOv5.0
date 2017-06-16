@@ -1,0 +1,32 @@
+tr{
+	border-botton: solid;
+	border-width:3px;
+}
+table, tr, td, th, tbody, thead, tfoot {
+	page-break-inside: avoid !important;
+}
+
+h1{
+	font-size: 500%;
+	text-align: center;
+	color: white;
+	background-color: darken(rgb(246, 251, 251), 60%);
+}
+.pdf_titulos{
+	text-align: justify;
+	font-size: 250%;
+	color: darken(rgb(246, 251, 251), 40%);
+}
+
+.pdf_productos{
+	text-align: justify;
+	text-indent: 150px;
+	color: darken(rgb(119, 119, 119), 30%);
+	font-size: 200%;
+}
+
+.pdf_fecha{
+	text-align: center;
+	font-size: 350%;
+	color: darken(rgb(246, 251, 251), 60%);
+}

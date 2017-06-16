@@ -2,22 +2,25 @@
 <html>
 	<head>
 		<title></title>
+		<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
 	</head>
 <body><h1>Menu del dia</h1>
+
 <p>
-  <strong>Fecha:</strong>
-  <%= @menu.fecha %>
+  <div class="pdf_fecha"><%= @menu.fecha %></div>
+  
 </p>
+</br>
 <p>
   
   <% @menu.productos %>
 </p>
 <% @tipos.each do |t| %>
-      <p><label><%= t.nombre %></label></p>
+      <div class="pdf_titulos"><p><label><%= t.nombre %></label></p></div>
 	<% @menu.productos.each do |producto| %>
   		<%if producto.tipo && producto.tipo.nombre==t.nombre %>        
-          <div class="field">
-            <p><%= producto.nombre if producto %></p>            
+          <div class="pdf_productos">
+            <li><%= producto.nombre if producto %></li>           
           </div>
           <br>
         <%else%>
