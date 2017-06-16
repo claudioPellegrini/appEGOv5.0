@@ -8,6 +8,16 @@ class MenusController < ApplicationController
     @productos = Producto.all
     @tiene_productos = TieneProducto.all
     @tipos = Tipo.all
+    @menus.each do |m|
+      if Time.now.to_date <= m.fecha.to_date
+         @menu = m
+       end
+     end
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf{render template: 'menus/menudeldia', pdf: 'Menudeldia' }
+    end
   end
 
   # GET /menus/1
@@ -15,6 +25,7 @@ class MenusController < ApplicationController
   def show
     @tipos = Tipo.all
   end
+
 
   # GET /menus/new
   def new
@@ -42,6 +53,8 @@ class MenusController < ApplicationController
     else
       respond_to do |format|
         if @menu.save
+          # redirect_to menus/menudeldia.pdf
+          #enviar_correos
           format.html { redirect_to @menu, notice: 'El Menu se ha creado correctamente .' }
           format.json { render :show, status: :created, location: @menu }
         else
@@ -78,6 +91,18 @@ class MenusController < ApplicationController
     end
   end
 
+   def enviar_correos 
+    @cuentas = Cuentum.all
+    @coma = "; "
+    @destinatarios = "ladeclaudio@gmail.com" + "; "
+    @cuentas.each do |c|         
+          @correos = c.email + @coma
+          @destinatarios << @correos
+    end
+    
+    CuentaMailer.mailing(@destinatarios, @menu).deliver_now
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
@@ -100,6 +125,5 @@ class MenusController < ApplicationController
       return false    
    end
 
-
-
+ 
 end

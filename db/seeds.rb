@@ -7,7 +7,7 @@
 
 #paso 1
 
-	# Cuentum.create(email: 'admin@admin.com', encrypted_password: 'sacala' )
+	 Cuentum.create(email: 'popo@popo.com', encrypted_password: 'sacala' )
 	# Empresa.create(rut: 0, nombre: 'eattinggo', razon_social: 'eattinggo', telefono: 91814355, direccion: 'calle asignada', email: 'info@eattinggo.com'  )
  
 
