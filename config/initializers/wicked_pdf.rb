@@ -7,15 +7,25 @@
 # To learn more, check out the README:
 #
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
-
-WickedPdf.config = {
+ if Rails.env.production?
+  	wkhtmltopdf_path = 'bin\wkhtmltopdf-amd64'
+  else	
+	wkhtmltopdf_path = 'bin\wkhtmltopdf\bin\wkhtmltopdf-64bit.exe'
+  end
+WickedPdf.config = { exe_path: wkhtmltopdf_path , wkhtmltopdf: wkhtmltopdf_path }
   # Path to the wkhtmltopdf executable: This usually isn't needed if using
   # one of the wkhtmltopdf-binary family of gems.
   # exe_path: '/usr/local/bin/wkhtmltopdf',
   #   or
   # exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')
-	:exe_path => 'bin\wkhtmltopdf\bin\wkhtmltopdf-64bit.exe'
+
+  #:exe_path => 'bin\wkhtmltopdf\bin\wkhtmltopdf-64bit.exe'
+
+
+ 
+
+   
   # Layout file to be used for all PDFs
   # (but can be overridden in `render :pdf` calls)
   # layout: 'pdf.html',
-}
+#}
