@@ -8,7 +8,7 @@
 #
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
  if Rails.env.production?
-  	wkhtmltopdf_path = 'bin\wkhtmltopdf-amd64'
+  	wkhtmltopdf_path = '#{Rails.root}/bin/wkhtmltopdf-amd64'
   else	
 	wkhtmltopdf_path = 'bin\wkhtmltopdf\bin\wkhtmltopdf-64bit.exe'
   end
