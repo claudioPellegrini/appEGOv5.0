@@ -69,10 +69,12 @@ class MenusController < ApplicationController
   # PATCH/PUT /menus/1
   # PATCH/PUT /menus/1.json
   def update
+    @tipos = Tipo.all
+    @productos = Producto.all
     respond_to do |format|
       @menu.productos = params[:productos]
       if @menu.update(menu_params)
-
+          crear_pdfs_menu
         format.html { redirect_to @menu, notice: 'El Menu se ha editado correctamente.' }
         format.json { render :show, status: :ok, location: @menu }
       else
