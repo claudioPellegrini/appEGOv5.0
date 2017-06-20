@@ -97,7 +97,7 @@ class MenusController < ApplicationController
 
   # CREAR PDF MENUS
   def crear_pdfs_menu
-    @menus = Menu.order('fecha DESC').all
+    @menus = Menu.all
     @menus.each do |m|
       if Time.now.to_date <= m.fecha.to_date
          @menu = m
