@@ -1,5 +1,6 @@
 class Bebida < ApplicationRecord
-	has_many :venta, dependent: :destroy
+	has_many :compra_bebidas
+	has_many :compras, through: :compra_bebidas
 	validates :nombre, presence: {message: "^Debe ingresar un nombre"}
 	validates :tipo, presence: {message: "^Debe ingresar un tipo"}
 	validates :tamanio, presence: {message: "^Debe ingresar un tamaño"}

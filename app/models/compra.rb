@@ -7,6 +7,7 @@ class Compra < ApplicationRecord
 	has_many :productos, through: :compra_productos
 	has_many :compra_bebidas
 	has_many :bebidas, through: :compra_bebidas
+	after_save :actualizo_stock
 
 	def productos=(value)
 
@@ -25,6 +26,18 @@ class Compra < ApplicationRecord
 		if @bebidas != nil
 			@bebidas.each do |bebida_id|
 				CompraBebida.create(bebida_id: bebida_id, compra_id: self.id)
+
+			end
+		end
+	end
+	def actualizo_stock
+		if @bebidas != nil
+			@bebidas.each do |bebida_id|
+				
+				mi_bebida = Stock.where(bebida_id: bebida_id)
+				saldo = mi_bebida.last.cant - 1
+				mi_bebida.update(cant: saldo )
+				# Stock.where(bebida_id: bebida_id).update(:cant saldo)
 			end
 		end
 	end
