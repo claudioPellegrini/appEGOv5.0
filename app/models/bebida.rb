@@ -9,4 +9,10 @@ class Bebida < ApplicationRecord
 	def inicializo_stock
 		Stock.create(bebida_id: self.id, cant: "0")
 	end
+
+	def mi_stock
+
+		saldo = Stock.where(bebida_id: self.id).sum(:cant)
+		return saldo
+	end
 end

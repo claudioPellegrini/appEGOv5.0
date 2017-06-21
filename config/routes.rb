@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'movimiento/index'
+
   resources :compras
   resources :venta
   devise_for :cuenta 

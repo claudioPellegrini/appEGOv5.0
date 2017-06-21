@@ -1,0 +1,15 @@
+<h1>Movimiento#index</h1>
+<div class="panel-body form-group">   
+    
+    <% if @bebidas.present? %>
+    <p><label>BEBIDAS </label></p>
+    <% @bebidas.each do |bebida| %>
+              
+             <%= bebida.nombre %> <br> <%= bebida.mi_stock %>
+            
+         
+          <br><br>
+    <%end%>
+    <%end%>
+
+  </div>
