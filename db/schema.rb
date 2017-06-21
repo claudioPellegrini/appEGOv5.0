@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615031409) do
+ActiveRecord::Schema.define(version: 20170621031417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,32 @@ ActiveRecord::Schema.define(version: 20170615031409) do
     t.decimal  "precio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "compra_bebidas", force: :cascade do |t|
+    t.integer  "compra_id"
+    t.integer  "bebida_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bebida_id"], name: "index_compra_bebidas_on_bebida_id", using: :btree
+    t.index ["compra_id"], name: "index_compra_bebidas_on_compra_id", using: :btree
+  end
+
+  create_table "compra_productos", force: :cascade do |t|
+    t.integer  "compra_id"
+    t.integer  "producto_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["compra_id"], name: "index_compra_productos_on_compra_id", using: :btree
+    t.index ["producto_id"], name: "index_compra_productos_on_producto_id", using: :btree
+  end
+
+  create_table "compras", force: :cascade do |t|
+    t.date     "fecha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "cuentum_id"
+    t.index ["cuentum_id"], name: "index_compras_on_cuentum_id", using: :btree
   end
 
   create_table "cuenta", force: :cascade do |t|
@@ -63,30 +89,11 @@ ActiveRecord::Schema.define(version: 20170615031409) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "fringes", force: :cascade do |t|
-    t.datetime "fecha"
-    t.decimal  "primera_hasta"
-    t.decimal  "primera_precio"
-    t.decimal  "segunda_hasta"
-    t.decimal  "segunda_precio"
-    t.decimal  "tercera_precio"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "menus", force: :cascade do |t|
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fecha"], name: "index_menus_on_fecha", unique: true, using: :btree
-  end
-
-  create_table "movimientos", force: :cascade do |t|
-    t.integer  "id_bebida"
-    t.datetime "fecha"
-    t.integer  "cant"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "productos", force: :cascade do |t|
@@ -100,10 +107,11 @@ ActiveRecord::Schema.define(version: 20170615031409) do
   end
 
   create_table "stocks", force: :cascade do |t|
-    t.integer  "id_producto"
-    t.integer  "saldo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "bebida_id"
+    t.integer  "cant"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bebida_id"], name: "index_stocks_on_bebida_id", using: :btree
   end
 
   create_table "tiene_productos", force: :cascade do |t|
@@ -135,18 +143,14 @@ ActiveRecord::Schema.define(version: 20170615031409) do
     t.index ["empresa_id"], name: "index_usuarios_on_empresa_id", using: :btree
   end
 
-  create_table "venta", force: :cascade do |t|
-    t.integer  "menu_id"
-    t.integer  "bebida_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "cuentum_id"
-    t.index ["cuentum_id"], name: "index_venta_on_cuentum_id", using: :btree
-  end
-
+  add_foreign_key "compra_bebidas", "bebidas"
+  add_foreign_key "compra_bebidas", "compras"
+  add_foreign_key "compra_productos", "compras"
+  add_foreign_key "compra_productos", "productos"
+  add_foreign_key "compras", "cuenta"
   add_foreign_key "productos", "tipos"
+  add_foreign_key "stocks", "bebidas"
   add_foreign_key "tiene_productos", "menus"
   add_foreign_key "tiene_productos", "productos"
   add_foreign_key "usuarios", "empresas"
-  add_foreign_key "venta", "cuenta"
 end

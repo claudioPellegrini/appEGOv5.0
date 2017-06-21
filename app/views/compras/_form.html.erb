@@ -1,0 +1,54 @@
+<%= form_for(compra) do |f| %>
+  <% if compra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(compra.errors.count, "error") %> prohibited this compra from being saved:</h2>
+
+      <ul>
+      <% compra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!-- VER COMO HACER PARA QUE LA FECHA SE ASIGNE ACA, SI NO DA ERROR EN EL COMPRA PARAMS... -->
+  <div class="panel-body form-group invisible">
+    <p><%= f.label :fecha %></p>
+    <%= f.date_select :fecha, class: 'form-control' %>
+  </div>
+  <div class="panel-body form-group">   
+    <% if @tipos.present? %>
+      <% @tipos.each do |t| %>       
+        <p><label><%= t.nombre %></label></p>
+        <% if@productos.present? %>        
+        <% @productos.each do |producto| %>        
+          <%if producto.tipo && producto.tipo.nombre==t.nombre %>        
+            <div class="field">
+              <%= check_box_tag "productos[]", producto.id %> <%= producto.nombre %>            
+            </div>
+            <br>
+          <%else%>        
+          <%end%>
+        <%end%>
+        <%end%>
+      <%end%>
+    <%end%>
+    
+    
+    <% if @bebidas.present? %>
+    <p><label>BEBIDAS </label></p>
+    <% @bebidas.each do |bebida| %>
+              
+          <div class="field">
+            <%= check_box_tag "bebidas[]", bebida.id   %> <%= bebida.nombre %>
+            
+          </div>
+          <br>
+    <%end%>
+    <%end%>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
