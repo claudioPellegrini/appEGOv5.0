@@ -1,17 +1,10 @@
 <%= form_for(compra) do |f| %>
-  <% if compra.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(compra.errors.count, "error") %> prohibited this compra from being saved:</h2>
-
-      <ul>
+  <div class="panel panel-default">
+    <div class="panel-body">
       <% compra.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="alert alert-danger"><%= message %></div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <!-- VER COMO HACER PARA QUE LA FECHA SE ASIGNE ACA, SI NO DA ERROR EN EL COMPRA PARAMS... -->
-  <div class="panel-body form-group  hidden">
+      <div class="panel-body form-group  hidden">
     <p><%= f.label :fecha %></p>
     <%= f.date_select :fecha, class: 'form-control' %>
   </div>
@@ -48,7 +41,23 @@
 
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  
+
+
+  <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        
+        <div class="btn-group">
+        <%= f.submit "Realizar compra", class: 'btn btn-info ' %>
+        </div>
+        <div class="btn-group">
+        <%= link_to 'Cancelar', compras_path, class: 'btn btn-info '  %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
+
+
+
+

@@ -8,7 +8,8 @@ class WelcomeController < ApplicationController
         if cuentum_signed_in? && current_cuentum.id == u.cuenta_id
   			@nombre = u.nombres
   			if current_cuentum.email == "admin@admin.com" || u.rol == "ADMINISTRADOR"
-  				@div_admin = true
+  				@div_admin = true 
+          @nombre = u.rol         
   			end
         
 	  		if u.rol == "USUARIO" 
