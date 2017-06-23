@@ -37,6 +37,9 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/1/edit
   def edit
+    if current_cuentum.email = "admin@admin.com" || @usuario.rol == "ADMINISTRADOR"
+      @div_admin = true
+    end
   end
 
   # POST /usuarios
