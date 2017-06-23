@@ -4,7 +4,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios
   # GET /usuarios.json
   def index
-    if current_cuentum.email = "admin@admin.com"
+    if current_cuentum.email == "admin@admin.com"
       @usuarios = Usuario.all
       @div_admin = true
     end
@@ -37,8 +37,11 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/1/edit
   def edit
-    if current_cuentum.email = "admin@admin.com" || @usuario.rol == "ADMINISTRADOR"
-      @div_admin = true
+    
+    if current_cuentum.email == "admin@admin.com" 
+      @div_edit_admin = true
+    else
+      @div_edit_admin = false
     end
   end
 
@@ -63,6 +66,7 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   # PATCH/PUT /usuarios/1.json
   def update
+
     respond_to do |format|
       if @usuario.update(usuario_params)
         format.html { redirect_to @usuario, notice: 'El Usuario se ha editado correctamente.' }

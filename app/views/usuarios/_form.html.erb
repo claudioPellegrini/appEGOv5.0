@@ -17,7 +17,7 @@
         <%= f.label "Apellidos" %><br />
         <%= f.text_field :apellidos, class: 'form-control' %>
       </div>
-      <% if @div_admin || @div_opera %>
+      <% if @div_edit_admin %>
         <div class="panel-body form-group">
           <%= f.label "Rol de Usuario" %><br />
           <%= f.select :rol, rol_usuario, { include_blank: 'Seleccionar rol de usuario' }, class: 'form-control' %>
