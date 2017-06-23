@@ -24,14 +24,14 @@
     </br>
     <li><%= link_to 'Usuarios', usuarios_path, class: 'btn btn-default btn-lg btn-block'  %></li>
     </br>  
-    <li><%= link_to 'Manejo Stock Bebidas', controller: 'movimiento', class: 'btn btn-default btn-lg btn-block'  %></li>
+    <li><%= link_to 'Manejo Stock Bebidas', { :controller => :movimiento, :action => :index }, { class: 'btn btn-default btn-lg btn-block'}  %></li>
     </br>    
     </div>
 <%end%>
 <% if @div_usuario %>
     <div>
     </br>
-    <li><%= link_to 'Comprar Menu', compra_path, class: 'btn btn-default btn-lg btn-block'  %></li>
+    <li><%= link_to 'Comprar Menu', compras_path, class: 'btn btn-default btn-lg btn-block'  %></li>
     </br>
     <li><%= link_to 'Usuarios', usuarios_path, class: 'btn btn-default btn-lg btn-block'  %></li>
     </br>
