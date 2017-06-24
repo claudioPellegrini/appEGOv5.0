@@ -4,7 +4,7 @@ class ComprasController < ApplicationController
   # GET /compras
   # GET /compras.json
   def index
-    @compras = Compra.all
+    @compras = current_cuentum.compras
   end
 
   # GET /compras/1
