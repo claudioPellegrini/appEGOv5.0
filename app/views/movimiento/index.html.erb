@@ -1,15 +1,32 @@
 <h1>Stock de bebidas</h1>
-<div class="panel-body form-group">   
-    
-    <% if @bebidas.present? %>
-    <p><label>BEBIDAS </label></p>
-    <% @bebidas.each do |bebida| %>
-              
-             <%= bebida.nombre %> <br> <%= bebida.mi_stock %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="listing">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Stock</th>
+              <th colspan="3"></th>
+            </tr>
+        	</thead>
+      
+        	<tbody>
+            	<% @bebidas.each do |bebida| %>
+             	<tr>
+             		<th><%= bebida.nombre %> </th>
+             		<th> <%= bebida.mi_stock %></th>
+             	</tr>
             
-         
-          <br><br>
-    <%end%>
-    <%end%>
+    			<%end%>
+        	</tbody>
+      </table>
 
+      </div>
+    </div>
   </div>
+</div>
+
+
+
