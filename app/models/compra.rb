@@ -2,12 +2,13 @@ class Compra < ApplicationRecord
 	belongs_to :cuentum
 	after_create :save_comprados
 	after_update :edit_comprados
-	before_destroy :destroy_comprados
+	#before_destroy :destroy_comprados
 	has_many :compra_productos
 	has_many :productos, through: :compra_productos
 	has_many :compra_bebidas
 	has_many :bebidas, through: :compra_bebidas
-	after_save :actualizo_stock
+	after_create :actualizo_stock
+	before_destroy :actualizo_stock_destroy
 
 	def productos=(value)
 
@@ -37,7 +38,7 @@ class Compra < ApplicationRecord
 				mi_bebida = Stock.where(bebida_id: bebida_id)
 				saldo = mi_bebida.last.cant - 1
 				mi_bebida.update(cant: saldo )
-				# Stock.where(bebida_id: bebida_id).update(:cant saldo)
+				
 			end
 		end
 	end
@@ -64,7 +65,27 @@ class Compra < ApplicationRecord
 	end
 
 	def destroy_comprados
+
+		#actualizo_stock_destroy
 		CompraProducto.where(compra_id:self.id).destroy_all
 		CompraBebida.where(compra_id:self.id).destroy_all
+
+	end
+
+	def actualizo_stock_destroy
+		#raise params.to_yaml
+
+		#raise self.bebidas.to_yaml
+		if self.bebidas != nil
+			#raise self.bebidas.to_yaml
+			self.bebidas.each do |bebida_id|
+				#raise.bebida_id.to_yaml
+				mi_bebida = Stock.where(bebida_id: bebida_id)
+				saldo = mi_bebida.last.cant + 1
+				mi_bebida.update(cant: saldo )
+				
+			end
+		end
+		destroy_comprados
 	end
 end

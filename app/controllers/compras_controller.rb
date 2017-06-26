@@ -66,7 +66,7 @@ class ComprasController < ApplicationController
 
     respond_to do |format|
       if @compra.save
-        format.html { redirect_to @compra, notice: 'Compra was successfully created.' }
+        format.html { redirect_to @compra, notice: 'La Compra fue creada correctamente.' }
         format.json { render :show, status: :created, location: @compra }
       else
         format.html { render :new }
@@ -100,9 +100,15 @@ class ComprasController < ApplicationController
   # DELETE /compras/1
   # DELETE /compras/1.json
   def destroy
+    @bebidas = @compra.bebidas.all
+    #raise @bebidas.to_yaml
+    # @bebidas.each do |b|
+    #   puts b
+    # end
+    # puts "#{@compra}"
     @compra.destroy
     respond_to do |format|
-      format.html { redirect_to compras_url, notice: 'Compra was successfully destroyed.' }
+      format.html { redirect_to compras_url, notice: 'La Compra fue eliminada correctamente.' }
       format.json { head :no_content }
     end
   end
