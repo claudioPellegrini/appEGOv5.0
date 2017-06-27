@@ -5,7 +5,7 @@ one:
   nombres: MyString
   apellidos: MyString
   rol: MyString
-  habilitado: false
+  habilitado: true
 
 two:
   ci: 1
