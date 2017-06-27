@@ -3,4 +3,5 @@ class MovimientoController < ApplicationController
   	@bebidas = Bebida.all
   	
   end
+  
 end
