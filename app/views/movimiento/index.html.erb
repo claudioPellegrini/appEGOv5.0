@@ -17,6 +17,8 @@
              	<tr>
              		<th><%= bebida.nombre %> </th>
              		<th> <%= bebida.mi_stock %></th>
+
+             		<th><%= link_to '', index_path(:bebida => bebida), class: 'btn btn-default btn-sm glyphicon glyphicon-plus', :title => "Editar" %></th>
              	</tr>
             
     			<%end%>

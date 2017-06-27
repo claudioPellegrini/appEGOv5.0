@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'movimiento/index'
+  get 'ingreso_bebida/index' => 'ingreso_bebida#index', :as => :index
 
   resources :compras
   resources :venta

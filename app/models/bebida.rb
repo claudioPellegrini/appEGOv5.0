@@ -15,4 +15,9 @@ class Bebida < ApplicationRecord
 		saldo = Stock.where(bebida_id: self.id).sum(:cant)
 		return saldo
 	end
+	def agrego(valor)
+		mi_bebida = Stock.where(bebida_id: self.id)
+		saldo = mi_bebida.last.cant + valor
+		mi_bebida.update(cant: saldo )
+	end
 end
