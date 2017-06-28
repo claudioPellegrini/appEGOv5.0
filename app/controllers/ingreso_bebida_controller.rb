@@ -16,6 +16,7 @@ class IngresoBebidaController < ApplicationController
 		@bebida_stock = params[:bebida_recibida]
 		@cantidad = params[:cantidad]
 		# @bebida_stock.agrego(@cantidad)
+
 		redirect_to :action => 'index', :controller => 'movimiento'
 	end
 

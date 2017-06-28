@@ -10,6 +10,10 @@
       <p><%= @bebida_recibida.nombre if @bebida_recibida%></p> 
 
       <input type="number" name="cantidad" class="form-control"/>  
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 842b49be76269815d19cf789886eb097bf47d0eb
       
 
     <div class="col-md-12">
@@ -19,7 +23,11 @@
     </br>  
 
     </br>   
+<<<<<<< HEAD
      <%= link_to 'Agregar cantidad', { :controller => :ingreso_bebida, :action => :agregoCantidad } , { class: 'btn btn-default btn-lg btn-block'}  %>
+=======
+     <%= link_to 'Agregar cantidad', agregoCantidad(@bebida_recibida) , { class: 'btn btn-default btn-lg btn-block'}  %>
+>>>>>>> 842b49be76269815d19cf789886eb097bf47d0eb
         </div>
         
         
