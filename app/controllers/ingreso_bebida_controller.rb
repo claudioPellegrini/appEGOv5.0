@@ -15,7 +15,7 @@ class IngresoBebidaController < ApplicationController
 
 		@bebida_stock = Bebida.find(params[:bebida])
 
-		@cantidad = params[:cant]
+		@cantidad = params[:cant].to_i
 		raise @cantidad.to_yaml
 		if @bebida_stock != nil
 			raise @cantidad.to_yaml
