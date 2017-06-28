@@ -69,6 +69,6 @@ class BebidasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bebida_params
-      params.require(:bebida).permit(:nombre, :tipo, :tamanio, :precio)
+      params.require(:bebida).permit(:nombre, :tipo, :tamanio, :precio, :cantidad)
     end
 end

@@ -1,0 +1,34 @@
+
+
+<%= form_for(stock) do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% stock.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger"><%= message %></div>
+      <% end %>
+
+      
+      <div class="panel-body form-group">
+    <p><%= f.label :bebida_id %></p>
+    <%= f.select :bebida_id,  Bebida.all.collect {|t| [ t.nombre, t.id ] }, { include_blank: 'Seleccionar Bebida' }, class: 'form-control' %>
+  </div>
+  </br>
+  <div class="panel-body form-group">
+    <p><%= f.label :cant %></p>
+    <%= f.number_field :cant, :step => "1", min: 0, class: 'form-control' %>
+  </div>
+  </br>
+    <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        
+        <div class="btn-group">
+        <%= f.submit "Guardar cantidad", class: 'btn btn-info ' %>
+        </div>
+        <div class="btn-group">
+        <%= link_to 'Cancelar', stocks_path, class: 'btn btn-info'  %>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+<% end %>

@@ -20,6 +20,10 @@
   <strong>Precio:</strong>
   <%= @bebida.precio %>
 </p>
+<p>
+  <strong>Stock:</strong>
+  <%= @bebida.cantidad %>
+</p>
 <div class="btn-group-vertical">
 <%= link_to 'Editar', edit_bebida_path(@bebida), class: 'btn btn-default' %> 
 <%= link_to 'Volver', bebidas_path, class: 'btn btn-info' %>

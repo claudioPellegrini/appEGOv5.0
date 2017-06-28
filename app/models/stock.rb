@@ -1,3 +1,3 @@
 class Stock < ApplicationRecord
-  belongs_to :bebida
+	belongs_to :bebida
 end
