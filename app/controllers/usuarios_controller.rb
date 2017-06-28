@@ -32,7 +32,11 @@ class UsuariosController < ApplicationController
   # GET /usuarios/new
   def new
     @usuario = Usuario.new
-
+    if current_cuentum.email == "admin@admin.com" 
+      @div_edit_admin = true
+    else
+      @div_edit_admin = false
+    end
   end
 
   # GET /usuarios/1/edit
