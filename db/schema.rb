@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628210157) do
+ActiveRecord::Schema.define(version: 20170629222554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20170628210157) do
     t.decimal  "precio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "cantidad"
   end
 
   create_table "compra_bebidas", force: :cascade do |t|
@@ -131,8 +130,9 @@ ActiveRecord::Schema.define(version: 20170628210157) do
   create_table "stocks", force: :cascade do |t|
     t.integer  "bebida_id"
     t.integer  "cant"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "factura_compra"
   end
 
   create_table "tiene_productos", force: :cascade do |t|

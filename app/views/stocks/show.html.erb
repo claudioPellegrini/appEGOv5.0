@@ -1,14 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Bebida:</strong>
-  <%= @stock.bebida_id %>
+  <strong>Fecha:</strong>
+  <%= @stock.created_at.to_date %>
 </p>
-
+<p>
+  <strong>Bebida:</strong>
+  <%= @stock.bebida.nombre %>
+</p>
+<p>
+  <strong>Tipo:</strong>
+  <%= @stock.bebida.tipo %>
+</p>
+<p>
+  <strong>Tamaño:</strong>
+  <%= @stock.bebida.tamanio %>
+</p>
 <p>
   <strong>Cant:</strong>
   <%= @stock.cant %>
 </p>
+<p>
+  <strong>Factura</strong>
+  <%= @stock.factura_compra %>
+</p>
 
-<%= link_to 'Edit', edit_stock_path(@stock) %> |
-<%= link_to 'Back', stocks_path %>
+<div class="btn-group-vertical">
+<!-- 
+<%= link_to 'Editar', edit_stock_path(@stock), class: 'btn btn-default' %> 
+ -->
+<%= link_to 'Volver', stocks_path, class: 'btn btn-info' %>
+</div>

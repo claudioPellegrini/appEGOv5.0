@@ -22,9 +22,10 @@
 </p>
 <p>
   <strong>Stock:</strong>
-  <%= @cantidad %>
+  <%= @bebida.mi_stock %>
 </p>
 <div class="btn-group-vertical">
 <%= link_to 'Editar', edit_bebida_path(@bebida), class: 'btn btn-default' %> 
 <%= link_to 'Volver', bebidas_path, class: 'btn btn-info' %>
+<%= link_to 'Abastecer stock', stocks_path, class: 'btn btn-default' %>
 </div>

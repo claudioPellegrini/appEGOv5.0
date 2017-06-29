@@ -8,11 +8,12 @@ class Bebida < ApplicationRecord
 	validates :precio, presence: {message: "^Debe ingresar un precio"}
 	after_create :inicializo_stock
 	def inicializo_stock		
-		Stock.create(bebida_id: self.id, cant: "0")
+		Stock.create(bebida_id: self.id, cant: "0", factura_compra: "0")
 	end
 
 	def mi_stock
-		saldo = Stock.where(bebida_id: self.id).sum(:cant)
+		# saldo = Stock.where(bebida_id: self.id).sum(:cant)
+		saldo = Stock.where(bebida_id: self.id).last.cant
 		return saldo
 	end
 	# def agrego(valor)
