@@ -1,8 +1,8 @@
 <tr>
   <td><%= stock.created_at.to_date %></td>
-  <td><%= stock.bebida.nombre %></td>
-  <td><%= stock.bebida.tipo %></td>
-  <td><%= stock.bebida.tamanio %></td>
+  <td><%= stock.bebida.nombre if stock.bebida%></td>
+  <td><%= stock.bebida.tipo if stock.bebida%></td>
+  <td><%= stock.bebida.tamanio if stock. bebida%></td>
   <td><%= stock.cant %></td>
   <td>
   <div class="btn-group">

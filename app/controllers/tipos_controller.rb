@@ -54,10 +54,17 @@ class TiposController < ApplicationController
   # DELETE /tipos/1
   # DELETE /tipos/1.json
   def destroy
-    @tipo.destroy
-    respond_to do |format|
-      format.html { redirect_to tipos_url, notice: 'Tipo was successfully destroyed.' }
-      format.json { head :no_content }
+    @tipo_elegido = Producto.where(tipo_id: @tipo.id)
+    if @tipo_elegido.blank?
+      @tipo.destroy
+      respond_to do |format|
+        format.html { redirect_to tipos_url, notice: 'Tipo was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to tipos_url, notice: 'No puede eliminarse el Tipo, ya que se ha creado un Producto de este Tipo'}
+      end
     end
   end
 

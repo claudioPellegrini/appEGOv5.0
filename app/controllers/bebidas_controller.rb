@@ -57,10 +57,19 @@ class BebidasController < ApplicationController
   # DELETE /bebidas/1
   # DELETE /bebidas/1.json
   def destroy
-    @bebida.destroy
-    respond_to do |format|
-      format.html { redirect_to bebidas_url, notice: 'La Bebida se ha eliminado correctamente.' }
-      format.json { head :no_content }
+    @bebidas_compradas = CompraBebida.where(bebida_id: @bebida.id)
+    # raise @bebidas_compradas.to_yaml
+    if @bebidas_compradas.blank?
+      # raise @bebidas_compradas.to_yaml
+      @bebida.destroy
+      respond_to do |format|
+        format.html { redirect_to bebidas_url, notice: 'La Bebida se ha eliminado correctamente.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to bebidas_url, notice: 'No puede eliminarse la Bebida, ya que fue comprada en un Menu'}
+      end
     end
   end
 

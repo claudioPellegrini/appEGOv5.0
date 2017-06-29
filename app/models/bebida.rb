@@ -7,6 +7,7 @@ class Bebida < ApplicationRecord
 	validates :tamanio, presence: {message: "^Debe ingresar un tamaño"}
 	validates :precio, presence: {message: "^Debe ingresar un precio"}
 	after_create :inicializo_stock
+	before_destroy :destroy_bebida
 	def inicializo_stock		
 		Stock.create(bebida_id: self.id, cant: "0")
 	end
@@ -14,6 +15,10 @@ class Bebida < ApplicationRecord
 	def mi_stock
 		saldo = Stock.where(bebida_id: self.id).sum(:cant)
 		return saldo
+	end
+
+	def destroy_bebida
+		Stock.where(bebida_id:self.id).destroy_all
 	end
 	# def agrego(valor)
 
@@ -24,4 +29,6 @@ class Bebida < ApplicationRecord
 	# 	puts valor
 	# 	mi_bebida.update(cant: saldo )
 	# end
+
+
 end
