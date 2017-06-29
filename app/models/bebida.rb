@@ -12,10 +12,10 @@ class Bebida < ApplicationRecord
 		Stock.create(bebida_id: self.id, cant: "0")
 	end
 
-	def mi_stock
-		saldo = Stock.where(bebida_id: self.id).sum(:cant)
-		return saldo
-	end
+	# def mi_stock
+	# 	saldo = Stock.where(bebida_id: self.id).sum(:cant)
+	# 	return saldo
+	# end
 
 	def destroy_bebida
 		Stock.where(bebida_id:self.id).destroy_all
