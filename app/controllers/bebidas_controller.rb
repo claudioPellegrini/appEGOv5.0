@@ -9,7 +9,10 @@ class BebidasController < ApplicationController
 
   # GET /bebidas/1
   # GET /bebidas/1.json
-  def show
+  def show    
+    stockActual = Stock.where(bebida_id: @bebida.id).order('created_at DESC').take
+    
+    @cantidad = stockActual.cant
   end
 
   # GET /bebidas/new
