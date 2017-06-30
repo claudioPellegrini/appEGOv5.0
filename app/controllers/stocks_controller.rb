@@ -25,12 +25,16 @@ class StocksController < ApplicationController
   # POST /stocks
   # POST /stocks.json
   def create
-    @stock = Stock.new(stock_params)    
-    valor = @stock.cant
-    mi_bebida = Stock.where(bebida_id: @stock.bebida_id)
-    saldoAnterior = mi_bebida.last.cant    
-    saldo = saldoAnterior + valor 
-    @stock.cant = saldo
+    @stock = Stock.new(stock_params)   
+    if @stock.cant == nil || @stock.bebida_id == nil || @stock.factura_compra == nil 
+      #
+    else
+      valor = @stock.cant
+      mi_bebida = Stock.where(bebida_id: @stock.bebida_id)
+      saldoAnterior = mi_bebida.last.cant    
+      saldo = saldoAnterior + valor 
+      @stock.cant = saldo
+    end
     respond_to do |format|
       if @stock.save
         format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
@@ -74,6 +78,6 @@ class StocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stock_params
-      params.require(:stock).permit(:bebida_id, :cant)
+      params.require(:stock).permit(:bebida_id, :cant, :factura_compra)
     end
 end

@@ -14,15 +14,20 @@
   </div>
   </br>
   <div class="panel-body form-group">
-    <p><%= f.label :cant %></p>
+    <p><%= f.label "Cantidad" %></p>
     <%= f.number_field :cant, :step => "1", min: 0, class: 'form-control' %>
+  </div>
+  </br>
+  <div class="panel-body form-group">
+    <p><%= f.label :factura_compra %></p>
+    <%= f.text_field :factura_compra, class: 'form-control' %>
   </div>
   </br>
     <div class="col-md-12">
       <div class="btn-group btn-group-justified">
         
         <div class="btn-group">
-        <%= f.submit "Guardar cantidad", class: 'btn btn-info ' %>
+        <%= f.submit "Guardar compra", class: 'btn btn-info ' %>
         </div>
         <div class="btn-group">
         <%= link_to 'Cancelar', stocks_path, class: 'btn btn-info'  %>
