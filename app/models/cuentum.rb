@@ -1,4 +1,6 @@
 class Cuentum < ApplicationRecord
+acts_as_token_authenticatable
+  
 	has_one :usuario
 	has_many :compras, dependent: :destroy
   # Include default devise modules. Others available are:
