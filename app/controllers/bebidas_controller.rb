@@ -56,14 +56,13 @@ class BebidasController < ApplicationController
   # DELETE /bebidas/1.json
   def destroy
     @bebidas_compradas = CompraBebida.where(bebida_id: @bebida.id)
-    # raise @bebidas_compradas.to_yaml
     stockActual = Stock.where(bebida_id: @bebida.id).order('created_at DESC').take
     
     @cantidad = stockActual.cant
     
-    # raise @cantidad.to_yaml
+    
     if @bebidas_compradas.blank? && @cantidad == 0
-      # raise @bebidas_compradas.to_yaml
+      
       @bebida.destroy
       respond_to do |format|
         format.html { redirect_to bebidas_url, notice: 'La Bebida se ha eliminado correctamente.' }

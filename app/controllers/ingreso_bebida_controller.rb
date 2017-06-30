@@ -14,17 +14,15 @@ class IngresoBebidaController < ApplicationController
 		
 		@bebida_stock = Bebida.find(params[:bebida])
 
-		# @cantidad = params[:cantidad].nil? ? 0 : params[:cantidad]
+		
 		@cantidad = params[:cant].to_i
-		# raise @cantidad.to_yaml
+		
 		if @bebida_stock != nil
-			# raise @cantidad.to_yaml
+			
 			@bebida_stock.agrego(@cantidad)
 		end
 		redirect_to :action => 'index', :controller => 'movimiento'
 	end
-	# def ingreso_bebida_params
- #      params.permit(:cant)
- #    end
+	
 
 end

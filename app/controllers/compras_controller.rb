@@ -48,7 +48,7 @@ class ComprasController < ApplicationController
   # POST /compras
   # POST /compras.json
   def create
-    #raise params.to_yaml
+    
     @bebidas = Bebida.all   
     @menus = Menu.all
     @menus.each do |menu|
@@ -56,13 +56,13 @@ class ComprasController < ApplicationController
         @productos = menu.productos.all
       end  
     end 
-    #raise params.to_yaml
+    
 
     @compra = current_cuentum.compras.new(compra_params)
     @compra.fecha =Time.now
     @compra.productos = params[:productos]
     @compra.bebidas = params[:bebidas]
-    #raise params.to_yaml
+    
 
     respond_to do |format|
       if @compra.save
@@ -88,7 +88,7 @@ class ComprasController < ApplicationController
     end 
     respond_to do |format|
       if @compra.update(compra_params)
-        format.html { redirect_to @compra, notice: 'Compra was successfully updated.' }
+        format.html { redirect_to @compra, notice: 'Compra actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @compra }
       else
         format.html { render :edit }
@@ -101,11 +101,7 @@ class ComprasController < ApplicationController
   # DELETE /compras/1.json
   def destroy
     @bebidas = @compra.bebidas.all
-    #raise @bebidas.to_yaml
-    # @bebidas.each do |b|
-    #   puts b
-    # end
-    # puts "#{@compra}"
+    
     @compra.destroy
     respond_to do |format|
       format.html { redirect_to compras_url, notice: 'La Compra fue eliminada correctamente.' }

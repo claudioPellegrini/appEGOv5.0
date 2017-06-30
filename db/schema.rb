@@ -91,30 +91,11 @@ ActiveRecord::Schema.define(version: 20170629222554) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "fringes", force: :cascade do |t|
-    t.datetime "fecha"
-    t.decimal  "primera_hasta"
-    t.decimal  "primera_precio"
-    t.decimal  "segunda_hasta"
-    t.decimal  "segunda_precio"
-    t.decimal  "tercera_precio"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "menus", force: :cascade do |t|
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fecha"], name: "index_menus_on_fecha", unique: true, using: :btree
-  end
-
-  create_table "movimientos", force: :cascade do |t|
-    t.integer  "id_bebida"
-    t.datetime "fecha"
-    t.integer  "cant"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "productos", force: :cascade do |t|
@@ -175,4 +156,3 @@ ActiveRecord::Schema.define(version: 20170629222554) do
   add_foreign_key "tiene_productos", "productos"
   add_foreign_key "usuarios", "empresas"
 end
-

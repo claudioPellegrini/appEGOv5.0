@@ -10,7 +10,7 @@
       
       <div class="panel-body form-group">
     <p><%= f.label :bebida_id %></p>
-    <%= f.select :bebida_id,  Bebida.all.collect {|t| [ t.nombre, t.id ] }, { include_blank: 'Seleccionar Bebida' }, class: 'form-control' %>
+    <%= f.select :bebida_id,  Bebida.all.collect {|t| [ t.nombre + " "+t.tipo+ " "+ t.tamanio, t.id ] }, { include_blank: 'Seleccionar Bebida' }, class: 'form-control' %>
   </div>
   </br>
   <div class="panel-body form-group">
