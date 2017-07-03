@@ -109,7 +109,7 @@ class MenusController < ApplicationController
       File.open(save_path, 'wb') do |file|
         file << pdf
       end
-    enviar_correos
+    # enviar_correos
   end
 
 
