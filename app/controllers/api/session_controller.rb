@@ -1,5 +1,6 @@
 class Api::SessionController < ApplicationController
-	before_filter :authenticate_cuentum!, :except => [:create, :destroy]
+	 before_filter :authenticate_cuentum!, :except => [:create, :destroy]
+
 	def create
  	 usuario = Cuentum.where(email: params[:email]).first
   		if usuario.valid_password?(params[:password])

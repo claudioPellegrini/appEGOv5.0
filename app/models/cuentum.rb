@@ -1,5 +1,6 @@
 class Cuentum < ApplicationRecord
-acts_as_token_authenticatable
+	acts_as_token_authenticatable
+# field :authentication_token
   
 	has_one :usuario
 	has_many :compras, dependent: :destroy

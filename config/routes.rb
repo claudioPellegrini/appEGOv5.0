@@ -39,5 +39,6 @@ end
   namespace :api, defaults: {format: 'json'} do
     resources :menus, only: [:index, :show]
     resources :session, only: [:create]
+    resources :cuentum, only: [:index]
   end
 end
