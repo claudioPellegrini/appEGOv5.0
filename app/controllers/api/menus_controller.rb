@@ -1,6 +1,8 @@
 class Api::MenusController < ApplicationController
-	before_action :set_menu, only: [:show]
+   before_filter :authenticate_cuentum!, :except => [:index]
+	# before_action :set_menu, only: [:show]
  
+
   def index
     @menu = Menu.where(fecha: Time.now).last
     if @menu.present?
@@ -20,6 +22,7 @@ class Api::MenusController < ApplicationController
     def set_menu
       @menu = Menu.find(params[:id])
     end
+
 
 
  

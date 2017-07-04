@@ -22,6 +22,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'byebug'
 
 
 gem 'sass-rails', '~> 5.0'
