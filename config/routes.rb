@@ -6,6 +6,10 @@ Rails.application.routes.draw do
    get 'ingreso_bebida/agregoCantidad' 
 
   resources :compras
+  resources :barcode
+  get 'barcode/show'
+  post 'barcode/new'
+
   resources :venta
   devise_for :cuenta 
 
@@ -30,17 +34,18 @@ end
   resources :productos
   resources :tipos
 
+
   resources :stocks
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
 
-  namespace :api, defaults: {format: 'json'} do
-    resources :menus, only: [:index, :show]
-    # resource :session, only: [:create]
-   
-    resource :sessions, only: [:create, :destroy]
-    # resources :cuentum, only: [:index]
-  end
+  # namespace :api, defaults: {format: 'json'} do
+  #   resources :menus, only: [:index, :show]
+  #   # resource :session, only: [:create]
+
+  #   resource :sessions, only: [:create, :destroy]
+  #   # resources :cuentum, only: [:index]
+  # end
 end

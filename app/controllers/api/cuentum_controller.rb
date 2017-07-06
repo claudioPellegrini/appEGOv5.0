@@ -1,9 +1,9 @@
 class Api::CuentumController < ApplicationController
-	def index
-		@cuentas = Cuentum.all
+	# def index
+	# 	@cuentas = Cuentum.all
 		
-		render json: @cuentas, status: :ok
-	end
+	# 	render json: @cuentas, status: :ok
+	# end
 
 	# def create
 	# 	@cuenta = Cuentum.new(cuenta_params)

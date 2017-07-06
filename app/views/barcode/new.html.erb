@@ -1,0 +1,63 @@
+<div class="section-container--header row">
+  <div class="col-md-10 col-xs-8">
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+   <%= form_for(:compra, url:{:controller => 'barcode', :action => 'create'}) do |f| %>
+      <div class="panel-body form-group  hidden">
+    <p><%= f.label :fecha %></p>
+    <%= f.date_select :fecha, class: 'form-control' %>
+  </div>
+  <div class="panel-body form-group">   
+    <% if @tipos.present? %>
+      <% @tipos.each do |t| %>       
+        <p><label><%= t.nombre %></label></p>
+        <% if@productos.present? %>      
+
+        <% @productos.each do |producto| %>        
+          <%if producto.tipo && producto.tipo.nombre==t.nombre %>        
+            <div class="check-box-barcode">
+              <%= check_box_tag "productos[]", producto.id, false, :style => "width: 20px; height: 20px;" %> <%= producto.nombre %>            
+            </div>
+            <br>
+          <%else%>        
+          <%end%>
+        <%end%>
+        <%end%>
+      <%end%>
+    <%end%>
+    
+    
+    <% if @bebidas.present? %>
+    <p><label>BEBIDAS </label></p>
+    <% @bebidas.each do |bebida| %>
+              
+          <div class="check-box-barcode">
+            <%= check_box_tag "bebidas[]", bebida.id, false, :style => "width: 20px; height: 20px;"   %> <%= bebida.nombre %>
+            
+          </div>
+          <br>
+    <%end%>
+    <%end%>
+
+  </div>
+
+  
+
+
+  <div class="col-md-12">
+      <div class="btn-group btn-group-justified">
+        
+        <div class="btn-group">
+        <%= f.submit "Realizar compra", class: 'btn btn-info btn-lg' %>
+        <%= link_to "Cancelar", { :controller => :barcode, :action => :index }, class: 'btn btn-default btn-lg' %>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<% end %>
+  </div>
+</div>

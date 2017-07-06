@@ -1,0 +1,2 @@
+module ComprasCodebarHelper
+end

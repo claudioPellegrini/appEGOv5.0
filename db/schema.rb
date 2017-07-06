@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630221355) do
+ActiveRecord::Schema.define(version: 20170706120930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,11 +93,30 @@ ActiveRecord::Schema.define(version: 20170630221355) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "fringes", force: :cascade do |t|
+    t.datetime "fecha"
+    t.decimal  "primera_hasta"
+    t.decimal  "primera_precio"
+    t.decimal  "segunda_hasta"
+    t.decimal  "segunda_precio"
+    t.decimal  "tercera_precio"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "menus", force: :cascade do |t|
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fecha"], name: "index_menus_on_fecha", unique: true, using: :btree
+  end
+
+  create_table "movimientos", force: :cascade do |t|
+    t.integer  "id_bebida"
+    t.datetime "fecha"
+    t.integer  "cant"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "productos", force: :cascade do |t|
@@ -144,6 +163,7 @@ ActiveRecord::Schema.define(version: 20170630221355) do
     t.datetime "updated_at", null: false
     t.integer  "empresa_id"
     t.integer  "cuenta_id"
+    t.index ["ci"], name: "index_usuarios_on_ci", unique: true, using: :btree
     t.index ["empresa_id"], name: "index_usuarios_on_empresa_id", using: :btree
   end
 
