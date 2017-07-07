@@ -1,6 +1,6 @@
 <div class="section-container--header row">
   <div class="col-md-10 col-xs-8">
-    
+   <h2>Hola <%= @usuario.nombres %></h2>
   </div>
 </div>
 <div class="row">
@@ -35,7 +35,7 @@
     <% @bebidas.each do |bebida| %>
               
           <div class="check-box-barcode">
-            <%= check_box_tag "bebidas[]", bebida.id, false, :style => "width: 20px; height: 20px;"   %> <%= bebida.nombre %>
+            <%= check_box_tag "bebidas[]", bebida.id, false, :style => "width: 20px; height: 20px;"   %> <%= bebida.nombre %> - <%= bebida.tipo %> - <%= bebida.tamanio %>
             
           </div>
           <br>
