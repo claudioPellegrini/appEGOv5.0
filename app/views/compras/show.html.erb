@@ -4,6 +4,33 @@
   <strong>Fecha:</strong>
   <%= @compra.fecha %>
 </p>
+<p>
+  
+  <% @productos_en_compra %>
+</p>
+<% @tipos.each do |t| %>
+      <p><label><%= t.nombre %></label></p>
+	<% @productos_en_compra.each do |producto| %>
+  		<%if producto.tipo && producto.tipo.nombre==t.nombre %>        
+          <div class="field">
+            <p><%= producto.nombre if producto %></p>            
+          </div>
+          <br>
+        <%else%>
+      
+   		<%end%>
+
+	<%end%>
+<%end%>
+
+	<% @bebidas_en_compra.each do |bebida| %>  		  
+          <div class="field">
+            <p><%= bebida.nombre if bebida %> - <%= bebida.tipo if bebida %> - <%= bebida.tamanio if bebida %></p>         
+          </div>
+          <br>
+        
+	<%end%>
+
 <div class="btn-group-vertical">
 
 <%= link_to 'Volver', compras_path, class: 'btn btn-default'  %>

@@ -4,19 +4,34 @@ class ComprasController < ApplicationController
   # GET /compras
   # GET /compras.json
   def index
-    @compras = current_cuentum.compras
+    @compras = current_cuentum.compras.order('fecha DESC')
   end
 
   # GET /compras/1
   # GET /compras/1.json
   def show
+    @bebidas = Bebida.all
+    @productos = Producto.all
+    @productos_en_compra = Array.new
+    @bebidas_en_compra = Array.new
+    compra_prod_bd = CompraProducto.where(compra_id: @compra.id)
+    compra_beb_bd = CompraBebida.where(compra_id: @compra.id)
+     compra_prod_bd.each do |prod|
+        @productos.each do |p|
+          if prod.producto_id == p.id
+            @productos_en_compra.push(p)
+          end
+        end         
+      end
+      compra_beb_bd.each do |beb|
+        @bebidas.each do |b|
+          if beb.bebida_id == b.id
+            @bebidas_en_compra.push(b)
+          end
+        end         
+      end
+
     @tipos =Tipo.all
-    @menus = Menu.all
-    @menus.each do |menu|
-      if menu.fecha.to_date == Time.now.to_date
-        @productos = menu.productos.all
-      end  
-    end 
   end
 
   # GET /compras/new
