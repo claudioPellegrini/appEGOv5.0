@@ -1,5 +1,5 @@
 class BarcodeController < ApplicationController
-	skip_before_action :authenticate_cuentum!
+	 skip_before_filter :authenticate_cuentum!
 
 
 	def index    
@@ -13,15 +13,15 @@ class BarcodeController < ApplicationController
 		if @usuario == nil	  		
 		  	flash[:error] = "Usuario no valido, por favor comuniquese con el Administrador!"
 		  	redirect_to :action => "index"
-		end		  		
-				
-		compras = Compra.where(fecha: Time.now.to_date)
-	    compras.each do |c|
-	      if @usuario.cuenta_id == c.cuentum_id
-	        flash[:error] = "Ya has realizado un compra hoy, no puedes repetir!!"
-	        redirect_to :action => "index"
-	      end
-	    end
+		else	
+			compras = Compra.where(fecha: Time.now.to_date)
+		    compras.each do |c|
+		      if @usuario.cuenta_id == c.cuentum_id
+		        flash[:error] = "Ya has realizado un compra hoy, no puedes repetir!!"
+		        redirect_to :action => "index"
+		      end
+		    end
+		end
 	    $usuarioBarcode = @usuario	
   	end
 
