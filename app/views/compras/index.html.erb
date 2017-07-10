@@ -13,6 +13,10 @@
               <th>Fecha</th>              
               <th colspan="3"></th>
             </tr>
+            <% if flash[:error] %>
+              <div class="alert alert-danger"><%= flash[:error] %></div>
+            <% end %>
+            </br>
           </thead>
 
   
