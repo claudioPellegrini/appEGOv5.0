@@ -1,6 +1,6 @@
 class Api::MenusController < ApplicationController
-   # before_filter :authenticate_cuentum!, :except => [:index]
-	# before_action :set_menu, only: [:show]
+    before_filter :authenticate_cuentum!, :except => [:index]
+	 before_action :set_menu, only: [:show]
  
 
   def index
