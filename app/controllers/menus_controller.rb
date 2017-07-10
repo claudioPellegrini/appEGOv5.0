@@ -109,6 +109,7 @@ class MenusController < ApplicationController
       File.open(save_path, 'wb') do |file|
         file << pdf
       end
+      #descomentar para q mande los correos
     # enviar_correos
   end
 

@@ -41,11 +41,11 @@ end
   root 'welcome#index'
 
 
-  # namespace :api, defaults: {format: 'json'} do
-  #   resources :menus, only: [:index, :show]
-  #   # resource :session, only: [:create]
-
-  #   resource :sessions, only: [:create, :destroy]
-  #   # resources :cuentum, only: [:index]
-  # end
+  namespace :api, defaults: {format: 'json'} do
+    resources :menus, only: [:index, :show]
+    # resource :session, only: [:create]
+    resources :usuarios
+    resource :sessions, only: [:create, :destroy]
+    # resources :cuentum, only: [:index]
+  end
 end
