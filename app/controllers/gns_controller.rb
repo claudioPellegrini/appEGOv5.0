@@ -7,7 +7,7 @@ class GnsController < ApplicationController
 		# $fechaFinal = Date.civil(params[:consultaConsumos][:"fechaFin(1i)"].to_i, params[:consultaConsumos][:"fechaFin(2i)"].to_i, params[:consultaConsumos][:"fechaFin(3i)"].to_i)
 		
 		if valid_date?
-			if $fechaFinal > $fechaInicial
+			if $fechaFinal >= $fechaInicial
 				redirect_to "/gns/consultaConsumos.xlsx"
 			else
 				flash[:error] = "La fecha inicial debe ser menor a la fecha final"
@@ -23,7 +23,7 @@ class GnsController < ApplicationController
 	def consultaConsumos
 		# @consumos = Compra.where('fecha BETWEEN ? AND ?', $fechaInicial, $fechaFinal)
 		# @consumos = Usuario.select('nombres, apellidos, (select sum( distinct Compras.cuentum_id)as consumos from Compras, Usuarios where Usuarios.cuenta_id = Compras.cuentum_id )').where(cuenta_id: Compra.select('cuentum_id').where('fecha BETWEEN ? AND ?', $fechaInicial, $fechaFinal))
-		@consumos = Usuario.find_by_sql("select nombres, apellidos, count(distinct Compras.created_at)as consumos from Compras, Usuarios where Usuarios.cuenta_id = Compras.cuentum_id group by Usuarios.nombres, Usuarios.apellidos")
+		@consumos = Usuario.find_by_sql(["select nombres, apellidos, count(distinct Compras.fecha)as consumos from Compras, Usuarios where Usuarios.cuenta_id = Compras.cuentum_id and Compras.fecha IN (SELECT fecha FROM Compras WHERE fecha BETWEEN ? AND ?)group by Usuarios.nombres, Usuarios.apellidos",$fechaInicial, $fechaFinal])
 		respond_to do |format| 
        		format.xlsx {render xlsx: 'consultaConsumos',filename: "consultaConsumos.xlsx"}
     	end    	
