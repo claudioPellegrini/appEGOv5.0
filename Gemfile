@@ -24,6 +24,9 @@ gem 'wkhtmltopdf-heroku'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'byebug'
 
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
 
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
