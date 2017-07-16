@@ -36,16 +36,23 @@ class ComprasController < ApplicationController
 
   # GET /compras/new
   def new
-    @compra = Compra.new
-    @bebidas = Bebida.all
+    compras = Compra.where(fecha: Time.now.to_date)
+    compras.each do |c|
+      if current_cuentum.id == c.cuentum_id
+        flash[:error] = "Ya has realizado un compra hoy, no puedes repetir!!"
+        redirect_to :action => "index"
+      end
+    end
+      @compra = Compra.new
+      @bebidas = Bebida.all    
+      @tipos = Tipo.all
+      @menus = Menu.all
+      @menus.each do |menu|
+        if menu.fecha.to_date == Time.now.to_date
+          @productos = menu.productos.all
+        end  
+      end 
     
-    @tipos = Tipo.all
-    @menus = Menu.all
-    @menus.each do |menu|
-      if menu.fecha.to_date == Time.now.to_date
-        @productos = menu.productos.all
-      end  
-    end 
   end
 
   # GET /compras/1/edit

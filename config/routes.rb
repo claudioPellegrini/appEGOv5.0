@@ -45,6 +45,8 @@ end
     resources :menus, only: [:index, :show]
     # resource :session, only: [:create]
     resources :usuarios
+    resource :compras, only: [:create, :index, :destroy]
+    # resources :cuentas, only: [:show, :create]
     resource :sessions, only: [:create, :destroy]
     # resources :cuentum, only: [:index]
   end

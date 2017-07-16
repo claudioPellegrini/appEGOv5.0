@@ -3,8 +3,8 @@
   acts_as_token_authentication_handler_for Cuentum, fallback: :none
   
   
-  protect_from_forgery unless: -> { request.format.json? } 
-  # protect_from_forgery with: :null_session
+   protect_from_forgery unless: -> { request.format.json? } 
+  # # protect_from_forgery with: :null_session
   
 
   before_action :authenticate_cuentum!

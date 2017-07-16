@@ -18,6 +18,7 @@ class Compra < ApplicationRecord
 	end
 
 	def save_comprados
+		byebug
 		if @productos != nil
 			@productos.each do |producto_id|
 				CompraProducto.create(producto_id: producto_id, compra_id: self.id)
