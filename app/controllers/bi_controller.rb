@@ -1,0 +1,2 @@
+class BiController < ApplicationController
+end
