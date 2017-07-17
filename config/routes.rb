@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
 
+  resources :calificacions
+  get 'calificar/index'
+
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
   get 'welcome/index'
@@ -13,7 +16,7 @@ Rails.application.routes.draw do
   get 'ingreso_bebida/agregoCantidad' 
   get 'barcode/show'
   post 'barcode/new'
-  get 'califica/new'
+  
   
   resources :compras
   resources :barcode

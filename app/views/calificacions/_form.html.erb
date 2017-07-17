@@ -1,0 +1,31 @@
+<%= form_for(calificacion) do |f| %>
+  <% if calificacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(calificacion.errors.count, "error") %> prohibited this calificacion from being saved:</h2>
+
+      <ul>
+      <% calificacion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="panel-body form-group">
+
+    <p><%= f.label :compra_id %></p>
+    <%= f.select :compra_id,  Compra.where(cuentum_id: current_cuentum.id ).collect {|t| [ t.fecha , t.id ] }, { include_blank: 'Seleccionar Compra' }, class: 'form-control' %>
+  </div>
+  
+
+ <div class="ec-stars-wrapper">
+  <%= link_to '&#9733;'.html_safe, {:controller => :calificacions, :action => :create, :valor => 1}, class: 'prueboClase'%>
+  
+  
+  
+  
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

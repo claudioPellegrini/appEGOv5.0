@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706120930) do
+ActiveRecord::Schema.define(version: 20170717043219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20170706120930) do
     t.string   "tipo"
     t.string   "tamanio"
     t.decimal  "precio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "calificacions", force: :cascade do |t|
+    t.integer  "compra_id"
+    t.integer  "valor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,10 +51,11 @@ ActiveRecord::Schema.define(version: 20170706120930) do
 
   create_table "compras", force: :cascade do |t|
     t.date     "fecha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "cuenta_id"
     t.integer  "cuentum_id"
+    t.integer  "calificacion"
     t.index ["cuenta_id"], name: "index_compras_on_cuenta_id", using: :btree
     t.index ["cuentum_id"], name: "index_compras_on_cuentum_id", using: :btree
   end

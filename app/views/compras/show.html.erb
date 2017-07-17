@@ -3,6 +3,7 @@
 <p>
   <strong>Fecha:</strong>
   <%= @compra.fecha %>
+
 </p>
 <p>
   
@@ -30,10 +31,10 @@
           <br>
         
 	<%end%>
-
+ 
   <div class="btn-group-vertical">
-
-<%= link_to 'Calificar', califica_new_path, class: 'btn btn-default'  %>
+<%= debug @compra %>
+<%= link_to 'Calificar', calificar_index_path(@compra), class: 'btn btn-default'  %>
 
 </div>
 

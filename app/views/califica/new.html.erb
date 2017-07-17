@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-	
+	<p><%= @compra.fecha if @compra%></p>
 <body><h1>Califica tu compra</h1>
 
 <div class="ec-stars-wrapper">
-	<a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
-	<a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
-	<a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
-	<a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
-	<a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+	<%= link_to '&#9733;'.html_safe, {:controller => :califica, :action => :create, :compra => @compra, :valor => 1}, class: 'prueboClase'%>
+	<%= link_to '&#9733;'.html_safe, {:controller => :califica, :action => :create, :valor => 2}, class: 'prueboClase'%>
+	
+	
+	
 </div>
 </body>
 </html>

@@ -8,6 +8,8 @@ class Compra < ApplicationRecord
 	has_many :bebidas, through: :compra_bebidas
 	after_create :actualizo_stock
 	before_destroy :actualizo_stock_destroy
+	has_many :calificacion
+
 
 	def productos=(value)
 
