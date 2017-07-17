@@ -33,6 +33,9 @@ Rails.application.routes.draw do
 
 
   resources :usuarios
+
+post 'import_from_excel' => "usuarios#import_from_excel"
+
   resources :menus do
   	resources :productos
   end
