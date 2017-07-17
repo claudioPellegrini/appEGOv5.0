@@ -18,10 +18,13 @@
   
 
  <div class="ec-stars-wrapper">
-  <%= link_to '&#9733;'.html_safe, {:controller => :calificacions, :action => :create, :valor => 1}, class: 'prueboClase'%>
+  <%= link_to '&#9733;'.html_safe, calificacions_path, class: 'prueboClase'%>
   
   
-  
+  <div class="panel-body form-group">
+    <p><%= f.label :valor %></p>
+    <%= f.number_field :valor, :step => "1", min: 0, max: 5, class: 'form-control' %>
+  </div>
   
 </div>
 

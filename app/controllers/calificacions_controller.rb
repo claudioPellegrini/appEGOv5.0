@@ -1,9 +1,21 @@
 class CalificacionsController < ApplicationController
   before_action :set_calificacion, only: [:show, :edit, :update, :destroy]
 
+
   # GET /calificacions
   # GET /calificacions.json
   def index
+    # @compras = current_cuentum.compras
+    # @compras.each do |compra|
+    #   # byebug
+    #   @califico = Calificacion.where(compra_id: compra.id)
+      
+      
+    
+    # end
+
+    # @calificacions = Calificacion.joins(:compras).where(:cuenta_id => current_cuentum.id)
+    
     @calificacions = Calificacion.all
   end
 
@@ -25,7 +37,6 @@ class CalificacionsController < ApplicationController
   # POST /calificacions
   # POST /calificacions.json
   def create
-    byebug
     @calificacion = Calificacion.new(calificacion_params)
 
     respond_to do |format|
