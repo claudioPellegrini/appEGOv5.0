@@ -1,11 +1,21 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>usuarios</h1>
-
+<h1>Usuarios</h1>
+  
 <div class="row">
   <div class="col-md-12">
     <div class="listing">
+    <div>
+   <h3>Actualizar planilla de sueldos</h3>
+   </div>
+    
+      <%= form_tag import_from_excel_path, multipart: true do %>
+     <%= file_field_tag :file , class: 'form-control' %>
+     <%= submit_tag "Importar sueldos", :class=> "btn btn-default"%>
+    <% end %>
+    </br>
+    <h3>Usuarios registrados</h3>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -28,7 +38,7 @@
     </div>
   </div>
   </div>
-
+  
 <br><div class="col-md-12">
   <div class="btn-group btn-group-justified">
   <% if @div_admin %>

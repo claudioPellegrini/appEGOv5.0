@@ -92,6 +92,35 @@ class UsuariosController < ApplicationController
     end
   end
 
+  def import_from_excel
+      file = params[:file]      
+      begin
+        # Retreive the extension of the file
+        file_ext = File.extname(file.original_filename)        
+        raise "Unknown file type: #{file.original_filename}" unless [".xls", ".xlsx"].include?(file_ext)
+        spreadsheet = (file_ext == ".xls") ? Roo::Excel.new(file.path) : Roo::Excelx.new(file.path)
+        header = spreadsheet.row(1)
+        
+        (2..spreadsheet.last_row).each do |i|
+          # User.create(first_name: spreadsheet.row(i)[0], last_name: spreadsheet.row(i)[1])
+          # usu = find_by(ci: row["ci"])
+          ci = spreadsheet.row(i)[0].to_i          
+          usu = Usuario.find_by(ci: ci)
+          
+          if usu != nil
+            usu.salario = spreadsheet.row(i)[1]
+            usu.save
+          end
+        end
+        flash[:notice] = "Salarios importados correctamente"
+        redirect_to usuarios_path 
+      rescue Exception => e
+        flash[:notice] = "No se ha podido importar el archivo, por favor verifique el formato del mismo y vuelva a intentarlo"
+        redirect_to usuarios_path 
+      end
+    end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario

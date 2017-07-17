@@ -23,6 +23,8 @@ gem 'wkhtmltopdf-binary'
 gem 'wkhtmltopdf-heroku'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'byebug'
+gem 'roo'
+gem 'roo-xls'
 
 gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
