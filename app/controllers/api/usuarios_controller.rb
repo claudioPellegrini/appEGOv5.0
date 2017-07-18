@@ -13,12 +13,17 @@ class Api::UsuariosController < ApplicationController
 		# byebug
 		render json: @usuarios, status: :ok
 	end
+	
+	# def show
+	# 	respond_with Usuario.find(params[:id])
+	# end
 
 	def create
 		@usuario = Usuario.new(usuario_params)
 
-		@usuario.save
-		render json: @usuario, status: :created
+		 @usuario.save
+			render json: @usuario, status: :created
+		
 	end
 
 	def destroy

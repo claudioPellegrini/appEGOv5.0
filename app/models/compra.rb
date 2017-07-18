@@ -8,6 +8,8 @@ class Compra < ApplicationRecord
 	has_many :bebidas, through: :compra_bebidas
 	after_create :actualizo_stock
 	before_destroy :actualizo_stock_destroy
+	has_one :calificacion
+
 
 	def productos=(value)
 
@@ -18,6 +20,7 @@ class Compra < ApplicationRecord
 	end
 
 	def save_comprados
+		# byebug
 		if @productos != nil
 			@productos.each do |producto_id|
 				CompraProducto.create(producto_id: producto_id, compra_id: self.id)
