@@ -70,7 +70,7 @@ class ComprasController < ApplicationController
   # POST /compras
   # POST /compras.json
   def create
-    
+    usuarios = Usuario.all
     @bebidas = Bebida.all   
     @menus = Menu.all
     @menus.each do |menu|
@@ -84,7 +84,7 @@ class ComprasController < ApplicationController
     @compra.fecha =Time.now
     @compra.productos = params[:productos]
     @compra.bebidas = params[:bebidas]
-    
+    @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
     respond_to do |format|
       if @compra.save
@@ -130,8 +130,34 @@ class ComprasController < ApplicationController
       format.json { head :no_content }
     end
   end
+  # Retorna la suma los precios de las bebidas seleccionadas
+  def sumarPrecioBebidas(valor)
+    lasBebidas = valor
+    suma = 0
+    if lasBebidas != nil      
+      lasBebidas.each do |b|
+        bebAux = Bebida.find(b.to_i)
+        suma = suma + bebAux.precio
+      end
+      return suma
+    end
+    return suma
+  end
 
-
+  # Retorna el precio final del ticket segun el sueldo del usuario y las franjas definidas
+  def valorTicket
+    usuario = Usuario.find_by(cuenta_id: current_cuentum.id)
+    franjaActual = Franja.last
+    if usuario != nil && franjaActual != nil
+      if usuario.salario <= franjaActual.primera_hasta
+        return franjaActual.primera_precio
+      elsif usuario.salario >= franjaActual.primera_hasta && usuario.salario <= franjaActual.segunda_hasta
+        return franjaActual.segunda_precio
+      else
+        return franjaActual.tercera_precio
+      end
+    end
+  end
 
   private
 

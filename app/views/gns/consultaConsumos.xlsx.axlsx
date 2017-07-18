@@ -1,8 +1,8 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "consultaConsumos") do |sheet|
 	sheet.add_row ["Periodo: ", $fechaInicial, $fechaFinal]
-    sheet.add_row ["Nombres", "Apellidos", "Consumos"]
+    sheet.add_row ["Nombres", "Apellidos", "Total", "Consumos"]
     @consumos.each do |c|
-        sheet.add_row [c.nombres, c.apellidos, c.consumos]
+        sheet.add_row [c.nombres, c.apellidos, c.total, c.consumos]
     end
 end

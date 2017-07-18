@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717002757) do
+ActiveRecord::Schema.define(version: 20170718002456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(version: 20170717002757) do
 
   create_table "compras", force: :cascade do |t|
     t.date     "fecha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "cuenta_id"
     t.integer  "cuentum_id"
+    t.integer  "valor_final_ticket"
     t.index ["cuenta_id"], name: "index_compras_on_cuenta_id", using: :btree
     t.index ["cuentum_id"], name: "index_compras_on_cuentum_id", using: :btree
   end

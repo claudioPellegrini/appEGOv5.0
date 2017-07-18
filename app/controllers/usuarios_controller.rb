@@ -92,6 +92,7 @@ class UsuariosController < ApplicationController
     end
   end
 
+  # Importa planilla de sueldo de usuarios desde un archivo excel
   def import_from_excel
       file = params[:file]      
       begin

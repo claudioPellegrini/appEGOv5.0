@@ -4,6 +4,7 @@
   <strong>Fecha:</strong>
   <%= @compra.fecha %>
 </p>
+Valor total del consumo: <strong>$<%= @compra.valor_final_ticket %></strong>
 <p>
   
   <% @productos_en_compra %>
@@ -30,6 +31,7 @@
           <br>
         
 	<%end%>
+
 
 <div class="btn-group-vertical">
 
