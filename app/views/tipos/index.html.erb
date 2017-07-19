@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Tipos</h1>
+<br>
+<div class="col-md-12">
+  <div class="btn-group btn-group-justified">
+    <%= link_to 'Nuevo Tipo', new_tipo_path, class: 'btn btn-default'  %>
+  
+    <%= link_to 'Volver', root_path, class: 'btn btn-default' %>
+
+  </div>
+</div>
+<br>
 
 <div class="row">
   <div class="col-md-12">
@@ -25,12 +35,3 @@
   </div>
   </div>
 
-<br>
-<div class="col-md-12">
-  <div class="btn-group btn-group-justified">
-    <%= link_to 'Nuevo Tipo', new_tipo_path, class: 'btn btn-default'  %>
-  
-    <%= link_to 'Volver', root_path, class: 'btn btn-default' %>
-
-  </div>
-</div>

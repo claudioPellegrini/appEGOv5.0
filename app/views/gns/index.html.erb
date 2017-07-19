@@ -15,11 +15,11 @@
    		 <p><%= f.label "Fecha inicial" %></p>
    			 <%= f.date_select :fechaIni, class: 'form-control' %>
    			 </br>
-   			 <div></div>
    			 </br>
   		 <p><%= f.label "Fecha Final" %></p>
    			 <%= f.date_select :fechaFin, class: 'form-control' %>
-    	
+    	 <p><%= f.label "Empresa" %></p>
+          <%= f.select :empresa_id,  Empresa.all.collect {|e| [ e.nombre, e.id ] }, { include_blank: 'Seleccionar empresa' }, class: 'form-control' %>
  		</div>
         <div class="col-md-12">
       <div class="btn-group btn-group-justified">

@@ -1,9 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Franjas</h1>
+<br>
+<div class="col-md-12">
+  <div class="btn-group btn-group-justified">
+    <%= link_to 'Nueva Franja', new_franja_path, class: 'btn btn-default'  %>
+  
+    <%= link_to 'Volver', root_path, class: 'btn btn-default' %>
 
+  </div>
+</div>
+<br>
 <div class="row">
-  <div class="col-md-15">
+  <div class="col-md-12">
     <div class="listing">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -32,11 +41,3 @@
   </div>
 
 <br>
-<div class="col-md-12">
-  <div class="btn-group btn-group-justified">
-    <%= link_to 'Nueva Franja', new_franja_path, class: 'btn btn-default'  %>
-  
-    <%= link_to 'Volver', root_path, class: 'btn btn-default' %>
-
-  </div>
-</div>
