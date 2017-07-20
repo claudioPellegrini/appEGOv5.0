@@ -76,6 +76,7 @@ GEM
     execjs (2.7.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    googlecharts (1.6.12)
     htmlentities (4.3.4)
     i18n (0.8.1)
     jbuilder (2.6.3)
@@ -210,6 +211,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   custom_error_message (~> 1.1.1)
   devise
+  googlecharts
   jbuilder (~> 2.5)
   jquery-rails
   mail

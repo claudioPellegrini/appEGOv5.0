@@ -39,6 +39,9 @@ class GnsController < ApplicationController
     	end    	
     end
 
+    
+
+
     # Control que evita que se ingrese una fecha no valida en el select, por ejemplo 31 de febrero
     def valid_date?
 	  begin
