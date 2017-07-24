@@ -13,8 +13,16 @@ class CalificacionsController < ApplicationController
       
     
     # end
+  #   @calificacions = Calificacion.joins('JOIN  "compras" 
+  # ON "calificacions"."compra_id" = "compras"."id"
+  # JOIN "cuenta"
 
-    # @calificacions = Calificacion.joins(:compras).where(:cuenta_id => current_cuentum.id)
+  # ON "compras"."cuentum_id" = "cuenta"."id" ').where(:cuenta_id => current_cuentum.id)
+  #   byebug
+
+    # @calificacions = Cuenta.joins(@pruebo).where(:cuenta_id => current_cuentum.id)
+    
+    @calificacions = Calificacion.joins(:compras).where(:cuenta_id => current_cuentum.id)
     
     @calificacions = Calificacion.all
   end

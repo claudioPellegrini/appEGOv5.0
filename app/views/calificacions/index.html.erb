@@ -18,18 +18,25 @@
             </br>
           </thead>
 
-  <tbody>
-    <% @calificacions.each do |calificacion| %>
-      <tr>
-        <td><%= calificacion.compra.fecha %></td>
-        <td><%= calificacion.valor %></td>
-        <td><%= link_to 'Show', calificacion %></td>
-        <td><%= link_to 'Edit', edit_calificacion_path(calificacion) %></td>
-        <td><%= link_to 'Destroy', calificacion, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <tbody>
+          <% if @calificacions.present? %>
+            <% @calificacions.each do |calificacion|  %>
+              <tr>
+                <td><%= calificacion.compra.fecha %></td>
+                <td><%= calificacion.valor %></td>
+                <td><%= link_to 'Show', calificacion %></td>
+                <td><%= link_to 'Edit', edit_calificacion_path(calificacion) %></td>
+                <td><%= link_to 'Destroy', calificacion, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+              </tr>
+            <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <br>
 <div class="col-md-12">

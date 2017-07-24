@@ -1,3 +1,4 @@
+
 class Menu < ApplicationRecord
 	has_many :tiene_productos
 	has_many :productos, through: :tiene_productos
@@ -9,6 +10,9 @@ class Menu < ApplicationRecord
 	validates :fecha, uniqueness: {message: "^Ya existe menu para esa fecha"}
 	validates :save_productos, presence: {message: "^Debe ingresar al menos 1 producto"}
 
+	
+
+
 	def productos=(value)
 		@productos = value
 	end
@@ -19,6 +23,7 @@ class Menu < ApplicationRecord
 				TieneProducto.create(producto_id: producto_id, menu_id: self.id)
 			end
 		end
+		
 	end
 
 	def edit_productos
@@ -30,9 +35,11 @@ class Menu < ApplicationRecord
 		TieneProducto.create(producto_id: producto_id, menu_id: self.id)
 		
 		end
+		
 	end
 
 	def destroy_productos
 		TieneProducto.where(menu_id:self.id).destroy_all
+		
 	end
 end

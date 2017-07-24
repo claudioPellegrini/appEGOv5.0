@@ -110,7 +110,7 @@ class MenusController < ApplicationController
         file << pdf
       end
       #descomentar para q mande los correos
-    enviar_correos
+    # enviar_correos
   end
 
 

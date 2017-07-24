@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
 
+  
+
+  
+
   resources :calificacions
   # get 'calificar/index'
 
@@ -18,9 +22,11 @@ Rails.application.routes.draw do
   get 'barcode/show'
   post 'barcode/new'
   
-  
+  get 'pedido/index'
+
   resources :compras
   resources :barcode
+  resources :pedido
   
 
   resources :venta
@@ -35,7 +41,7 @@ Rails.application.routes.draw do
 
   resources :usuarios
 
-post 'import_from_excel' => "usuarios#import_from_excel"
+  post 'import_from_excel' => "usuarios#import_from_excel"
 
   resources :menus do
   	resources :productos

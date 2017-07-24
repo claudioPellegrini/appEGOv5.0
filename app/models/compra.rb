@@ -1,3 +1,4 @@
+# require 'observer'
 class Compra < ApplicationRecord
 	belongs_to :cuentum
 	after_create :save_comprados
@@ -9,7 +10,12 @@ class Compra < ApplicationRecord
 	after_create :actualizo_stock
 	before_destroy :actualizo_stock_destroy
 	has_one :calificacion
+	after_create :envio_aviso
+	after_update :envio_aviso
+	after_destroy :envio_aviso
 
+	
+	# include Observable
 
 	def productos=(value)
 
@@ -43,6 +49,14 @@ class Compra < ApplicationRecord
 				
 			end
 		end
+		# changed
+		# notify_observers()
+		# add_observer(Notifier.new)
+	end
+
+	def envio_aviso
+		PedidoController.actualizo
+		byebug
 	end
 
 	def edit_comprados
@@ -64,12 +78,13 @@ class Compra < ApplicationRecord
 			
 			end
 		end
+		# notify_observers(self, @productos)
 	end
 
 	def destroy_comprados
 		CompraProducto.where(compra_id:self.id).destroy_all
 		CompraBebida.where(compra_id:self.id).destroy_all
-
+		# notify_observers(self, @productos)
 	end
 
 	def actualizo_stock_destroy

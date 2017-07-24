@@ -105,7 +105,8 @@ class UsuariosController < ApplicationController
         (2..spreadsheet.last_row).each do |i|
           # User.create(first_name: spreadsheet.row(i)[0], last_name: spreadsheet.row(i)[1])
           # usu = find_by(ci: row["ci"])
-          ci = spreadsheet.row(i)[0].to_i          
+          ci = spreadsheet.row(i)[0].to_i    
+              
           usu = Usuario.find_by(ci: ci)
           
           if usu != nil

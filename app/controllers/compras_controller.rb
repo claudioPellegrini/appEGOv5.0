@@ -1,6 +1,6 @@
 class ComprasController < ApplicationController
   before_action :set_compra, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /compras
   # GET /compras.json
   def index
@@ -84,6 +84,7 @@ class ComprasController < ApplicationController
     @compra.fecha =Time.now
     @compra.productos = params[:productos]
     @compra.bebidas = params[:bebidas]
+    
     @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
     respond_to do |format|
@@ -146,9 +147,16 @@ class ComprasController < ApplicationController
 
   # Retorna el precio final del ticket segun el sueldo del usuario y las franjas definidas
   def valorTicket
+    
     usuario = Usuario.find_by(cuenta_id: current_cuentum.id)
+    menu = Menu.find_by(fecha: Time.now)
+    # byebug
     franjaActual = Franja.last
+    if menu == nil
+      return 0
+    end
     if usuario != nil && franjaActual != nil
+
       if usuario.salario <= franjaActual.primera_hasta
         return franjaActual.primera_precio
       elsif usuario.salario >= franjaActual.primera_hasta && usuario.salario <= franjaActual.segunda_hasta
