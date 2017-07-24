@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get 'gns/consultaConsumos'
   post 'gns/consumos'
   get 'bi/index'
-  get 'bi/grafica_1'
+  get 'bi/compras_por_dia'
+  get 'bi/consumos_por_mes'
+  get 'bi/productos_mas_consumidos'
   get 'movimiento/index'
   get 'ingreso_bebida/index' => 'ingreso_bebida#index', :as => :index
   get 'ingreso_bebida/agregoCantidad' 
