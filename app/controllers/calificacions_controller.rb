@@ -5,24 +5,9 @@ class CalificacionsController < ApplicationController
   # GET /calificacions
   # GET /calificacions.json
   def index
-    # @compras = current_cuentum.compras
-    # @compras.each do |compra|
-    #   # byebug
-    #   @califico = Calificacion.where(compra_id: compra.id)
-      
-      
-    
-    # end
-  #   @calificacions = Calificacion.joins('JOIN  "compras" 
-  # ON "calificacions"."compra_id" = "compras"."id"
-  # JOIN "cuenta"
 
-  # ON "compras"."cuentum_id" = "cuenta"."id" ').where(:cuenta_id => current_cuentum.id)
-  #   byebug
-
-    # @calificacions = Cuenta.joins(@pruebo).where(:cuenta_id => current_cuentum.id)
+    # @calificacions = Calificacion.find_by_sql("SELECT Calificacions.id, CALIFICACIONS.compra_id, CALIFICACIONS.VALOR FROM public.CALIFICACIONs JOIN COMPRAS ON CALIFICACIONs.compra_id=COMPRAS.id join Cuenta on COMPRAS.cuentum_id=CUENTA.id WHERE CUENTA.ID="+current_cuentum.id.to_s)
     
-    @calificacions = Calificacion.joins(:compras).where(:cuenta_id => current_cuentum.id)
     
     @calificacions = Calificacion.all
   end
