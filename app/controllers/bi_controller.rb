@@ -109,6 +109,24 @@ class BiController < ApplicationController
 
     end
 
+    def bebidas_mas_consumidas
+    	nombres = Array.new
+		cantidades = Array.new
+		consulta = Bebida.find_by_sql("select Bebidas.nombre, Bebidas.tipo, Bebidas.tamanio,  count(Compra_bebidas.bebida_id)as consumos from Bebidas, Compra_bebidas where Bebidas.id = Compra_bebidas.bebida_id  group by Bebidas.nombre, Bebidas.tipo, Bebidas.tamanio  ")
+		consulta.each do |c|
+			nombres.push(c.nombre + " - " + c.tipo + " - " + c.tamanio)
+			cantidades.push(c.consumos)
+		end
+        @bebidasPie=Gchart.pie( 
+            :size   => '600x400',
+            :title  => " ",
+            :legend => nombres,#['firefox', 'chrome', 'IE', 'Safari', 'Opera'],
+            :labels => cantidades,
+            :custom => "chco=FE2E64,9AFE2E",
+            :data   => cantidades#[120, 45, 25, 55, 20, 90]
+            )
+    end
+
     def mesTexto(valor)
     	if valor != nil
 	    	if valor == 1

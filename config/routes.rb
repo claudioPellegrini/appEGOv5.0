@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'bi/consumos_por_mes'
   get 'bi/productos_mas_consumidos'
   get 'bi/recaudo_por_dia'
+  get 'bi/bebidas_mas_consumidas'
   get 'movimiento/index'
   get 'ingreso_bebida/index' => 'ingreso_bebida#index', :as => :index
   get 'ingreso_bebida/agregoCantidad' 
