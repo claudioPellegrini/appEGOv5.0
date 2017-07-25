@@ -89,7 +89,8 @@ class BiController < ApplicationController
         @barra = Gchart.bar( 
             :size => '600x400',
             :bar_colors => ['0022FF'],
-            :title => "  Total recaudado por dia",
+            :title => "Total recaudado por dia",
+            # :title_position => 'center',
             :bg => 'd5ebf2',
             :grouped => true,
             :legend => ['Recaudación'],

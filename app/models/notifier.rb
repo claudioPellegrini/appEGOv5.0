@@ -1,12 +1,11 @@
 class Notifier 
 
-	# def compra_create_succesful(compra)
-	# 	byebug
+	def compra_create_succesful(compra)
+		byebug
 
-	# end
+	end
 
 	def after_created(compra)
-		byebug
 	end
 
 	# def update(compra, param)

@@ -87,11 +87,18 @@ class ComprasController < ApplicationController
     
     @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
+    @compra.subscribe(PedidoController.new)
+    # @compra.on(:compra_create_succesfull) { redirect_to compras_path }
+    # @compra.on(:compra_create_failed) { render :action => :new }
+    # @compra.commit
+
     respond_to do |format|
       if @compra.save
+        # @compra.on(:compra_creation_successful)
         format.html { redirect_to @compra, notice: 'La Compra fue creada correctamente.' }
         format.json { render :show, status: :created, location: @compra }
       else
+        # @compra.on(:compra_creation_failed)
         format.html { render :new }
         format.json { render json: @compra.errors, status: :unprocessable_entity }
       end
@@ -118,6 +125,11 @@ class ComprasController < ApplicationController
         format.json { render json: @compra.errors, status: :unprocessable_entity }
       end
     end
+
+    # @compra.subscribe(Notifier.new)
+    # @compra.on(:compra_update_successful) { redirect_to compras_path }
+    # @compra.on(:compra_update_failed) { render :action => :edit }
+    # @compra.commit(params[:compra])
   end
 
   # DELETE /compras/1

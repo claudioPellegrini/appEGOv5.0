@@ -5,6 +5,10 @@ class PedidoController < ApplicationController
 	end
 
 
+	def after_created(compra)
+		byebug
+	end
+
 	def self.actualizo
 	  	# byebug
 	  	@compras = Compra.all
