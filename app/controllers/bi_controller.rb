@@ -2,6 +2,7 @@ class BiController < ApplicationController
 
 	# graficas usando gema googlecharts
     def compras_por_dia
+    	max = 0
     	fechas = Array.new
     	data_array_1 = Array.new#[1, 4, 3, 5, 9] 
     	#data_array_2 = [ 0, 0, 0, 0, 0] 
@@ -9,20 +10,22 @@ class BiController < ApplicationController
     	consultaPorDia.each do |cpd|
     		data_array_1.push(cpd.contador)
     		fechas.push(cpd.fecha.strftime("%d/%m") )
+    		max = maximo(max,cpd.contador)
     	end
     	@barv = Gchart.bar( 
             :size => '600x400',
             :bar_colors => ['0022FF'],
-            :title => "	 Total de compras por dia",
+            :title => "	 ",
             :bg => 'd5ebf2',
             :grouped => true,
             :legend => ['Consumos'],
             :data => [data_array_1],#, data_array_2],            
             :legend_position => 'top',
-            :axis_with_labels => [['x'], ['y']], 
-            :max_value => 100,
+            :axis_with_labels => [['x'], ['y'], ['t']], 
+            :axis_range => [nil, [0,max,10]],
+            :max_value => max,
             :min_value => 0,
-            :axis_labels => [fechas],
+            :axis_labels => [fechas, [], data_array_1],
             ) 		
 
     end       
@@ -39,7 +42,7 @@ class BiController < ApplicationController
 		end
         @pastel=Gchart.pie( 
             :size   => '600x400',
-            :title  => "Historico de Productos mas consumidos",
+            :title  => " ",
             :legend => nombres,#['firefox', 'chrome', 'IE', 'Safari', 'Opera'],
             :labels => cantidades,
             :custom => "chco=FE2E64,9AFE2E",
@@ -50,6 +53,7 @@ class BiController < ApplicationController
 
 
     def consumos_por_mes
+    	max = 0
     	meses = Array.new
     	data_array_1 = Array.new#[1, 4, 3, 5, 9] 
     	#data_array_2 = [ 0, 0, 0, 0, 0] 
@@ -57,51 +61,70 @@ class BiController < ApplicationController
     	consultaPorMes.each do |cpm|
     		data_array_1.push(cpm.contador)
     		meses.push(mesTexto(cpm.mes))
+    		max = maximo(max,cpm.contador)
     	end
     	@line = Gchart.line( 
             :size => '600x400',
             :bar_colors => ['0022FF'],
-            :title => "	 Evolucion de los consumos",
+            :title => "	 ",
             :bg => 'd5ebf2',
             :grouped => true,
             :legend => ['Consumos'],
             :data => [data_array_1],#, data_array_2],            
             :legend_position => 'top',
-            :axis_with_labels => [['x'], ['y']], 
-            :max_value => 100,
-            :min_value => 0,
-            :axis_labels => [meses],
+            :axis_with_labels => [['x'], ['y'], ['t']],             
+            :axis_range => [nil, [0,max,100]],
+            :max_value => max,
+            :min_value => 0,           
+            :axis_labels => [meses, [], data_array_1],
             ) 		
 
     end    
 
     def recaudo_por_dia
+    	max = 0
         fechas = Array.new
         array2 = Array.new
-
         recaudo_por_dia = Compra.find_by_sql("SELECT SUM (COMPRAS.VALOR_FINAL_TICKET) as suma, FECHA FROM compras GROUP BY FECHA ORDER BY fecha ASC;")
         recaudo_por_dia.each do |rpd|
             array2.push(rpd.suma)
             fechas.push(rpd.fecha.strftime("%d/%m") )
+            max = maximo(max,rpd.suma)
         end
-
-
         @barra = Gchart.bar( 
             :size => '600x400',
             :bar_colors => ['0022FF'],
-            :title => "Total recaudado por dia",
-            # :title_position => 'center',
+            :title => " ",
             :bg => 'd5ebf2',
             :grouped => true,
             :legend => ['Recaudación'],
-            :data => [array2],#, data_array_2],            
+            :data => [array2],            
             :legend_position => 'top',
-            :axis_with_labels => [['x'], ['y']], 
-            :max_value => 1000,
+            :axis_with_labels => [['x'], ['y'], ['t']], 
+            :axis_range => [nil, [0,max,50]],
+            :max_value => max,
             :min_value => 0,
-            :axis_labels => [fechas],
+            :axis_labels => [fechas, [], array2],
             )   
 
+    end
+
+    def bebidas_mas_consumidas
+    	nombres = Array.new
+		cantidades = Array.new
+		consulta = Bebida.find_by_sql("select Bebidas.nombre, Bebidas.tipo, Bebidas.tamanio,  count(Compra_bebidas.bebida_id)as consumos from Bebidas, Compra_bebidas where Bebidas.id = Compra_bebidas.bebida_id  group by Bebidas.nombre, Bebidas.tipo, Bebidas.tamanio  ")
+		consulta.each do |c|
+			nombres.push(c.nombre + " - " + c.tipo + " - " + c.tamanio)
+			cantidades.push(c.consumos)
+		end
+        @bebidasPie=Gchart.pie( 
+            :size   => '600x400',
+            :title  => " ",
+            :legend => nombres,#['firefox', 'chrome', 'IE', 'Safari', 'Opera'],
+            :labels => cantidades,
+            :custom => "chco=FE2E64,9AFE2E",
+            :data   => cantidades#[120, 45, 25, 55, 20, 90]
+            )
     end
 
     def mesTexto(valor)
@@ -135,5 +158,17 @@ class BiController < ApplicationController
 	    	return ""
 	    end
     end   
+
+    def maximo(valorOld, valorNew)
+    	if valorOld != nil && valorNew != nil
+    		if valorOld < valorNew
+    			return valorNew
+    		else
+    			return valorOld
+    		end
+    	else
+    		return 0
+    	end
+    end
 
 end
