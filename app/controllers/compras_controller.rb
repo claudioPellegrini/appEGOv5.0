@@ -36,23 +36,30 @@ class ComprasController < ApplicationController
 
   # GET /compras/new
   def new
-    compras = Compra.where(fecha: Time.now.to_date)
-    compras.each do |c|
-      if current_cuentum.id == c.cuentum_id
-        flash[:error] = "Ya has realizado un compra hoy, no puedes repetir!!"
-        redirect_to :action => "index"
+    menu = Menu.find_by(fecha: Time.now.to_date)
+    if menu == nil
+      @div_compra = false
+      @div_msg = true
+    else
+      @div_compra = true
+      @div_msg = false
+      compras = Compra.where(fecha: Time.now.to_date)
+      compras.each do |c|
+        if current_cuentum.id == c.cuentum_id
+          flash[:error] = "Ya has realizado un compra hoy, no puedes repetir!!"
+          redirect_to :action => "index"
+        end
       end
+        @compra = Compra.new
+        @bebidas = Bebida.all    
+        @tipos = Tipo.all
+        @menus = Menu.all
+        @menus.each do |menu|
+          if menu.fecha.to_date == Time.now.to_date
+            @productos = menu.productos.all
+          end  
+        end 
     end
-      @compra = Compra.new
-      @bebidas = Bebida.all    
-      @tipos = Tipo.all
-      @menus = Menu.all
-      @menus.each do |menu|
-        if menu.fecha.to_date == Time.now.to_date
-          @productos = menu.productos.all
-        end  
-      end 
-    
   end
 
   # GET /compras/1/edit
@@ -84,23 +91,27 @@ class ComprasController < ApplicationController
     @compra.fecha =Time.now
     @compra.productos = params[:productos]
     @compra.bebidas = params[:bebidas]
-    
-    @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
+    if @compra.productos == nil #QUIERO CONTROLAR QUE HAYA ELEGIDO POR LO MENOS 1 PRODUCTO, NO FUNCA :( REVISAR!
+      format.html { render :new, notice: 'Debe seleccionar al menos 1 producto.' }
+    else
+      @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
-    @compra.subscribe(PedidoController.new)
-    # @compra.on(:compra_create_succesfull) { redirect_to compras_path }
-    # @compra.on(:compra_create_failed) { render :action => :new }
-    # @compra.commit
+      # @compra.subscribe(PedidoController.new)
 
-    respond_to do |format|
-      if @compra.save
-        # @compra.on(:compra_creation_successful)
-        format.html { redirect_to @compra, notice: 'La Compra fue creada correctamente.' }
-        format.json { render :show, status: :created, location: @compra }
-      else
-        # @compra.on(:compra_creation_failed)
-        format.html { render :new }
-        format.json { render json: @compra.errors, status: :unprocessable_entity }
+      # @compra.on(:compra_create_succesfull) { redirect_to compras_path }
+      # @compra.on(:compra_create_failed) { render :action => :new }
+      # @compra.commit
+
+      respond_to do |format|
+        if @compra.save
+          # @compra.on(:compra_creation_successful)
+          format.html { redirect_to @compra, notice: 'La Compra fue creada correctamente.' }
+          format.json { render :show, status: :created, location: @compra }
+        else
+          # @compra.on(:compra_creation_failed)
+          format.html { render :new }
+          format.json { render json: @compra.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
