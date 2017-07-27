@@ -1,4 +1,7 @@
-
+<% if flash[:error] %>
+    <div class="alert alert-danger"><%= flash[:error] %></div>
+  <% end %>
+</br>
 <div class="section-container--header row">
 </div>
   <% if @div_msg %>

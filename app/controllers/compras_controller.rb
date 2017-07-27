@@ -90,9 +90,12 @@ class ComprasController < ApplicationController
     @compra = current_cuentum.compras.new(compra_params)
     @compra.fecha =Time.now
     @compra.productos = params[:productos]
-    @compra.bebidas = params[:bebidas]
-    if @compra.productos == nil #QUIERO CONTROLAR QUE HAYA ELEGIDO POR LO MENOS 1 PRODUCTO, NO FUNCA :( REVISAR!
-      format.html { render :new, notice: 'Debe seleccionar al menos 1 producto.' }
+    @compra.bebidas = params[:bebidas]  
+
+    if params[:productos] == nil
+      flash[:error] = "Debe seleccionar al menos 1 producto!"
+            redirect_to :action => "new"
+      
     else
       @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
