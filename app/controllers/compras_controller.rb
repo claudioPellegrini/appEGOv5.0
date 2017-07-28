@@ -5,6 +5,7 @@ class ComprasController < ApplicationController
   # GET /compras.json
   def index
     @compras = current_cuentum.compras.order('fecha DESC')
+
   end
 
   # GET /compras/1
@@ -37,9 +38,13 @@ class ComprasController < ApplicationController
   # GET /compras/new
   def new
     menu = Menu.find_by(fecha: Time.now.to_date)
+    franjaActual = Franja.last
     if menu == nil
       @div_compra = false
-      @div_msg = true
+      @div_msg_menu = true
+    elsif franjaActual == nil
+      @div_compra = false
+      @div_msg_franja = true
     else
       @div_compra = true
       @div_msg = false
@@ -172,8 +177,7 @@ class ComprasController < ApplicationController
   end
 
   # Retorna el precio final del ticket segun el sueldo del usuario y las franjas definidas
-  def valorTicket
-    
+  def valorTicket    
     usuario = Usuario.find_by(cuenta_id: current_cuentum.id)
     menu = Menu.find_by(fecha: Time.now)
     # byebug
