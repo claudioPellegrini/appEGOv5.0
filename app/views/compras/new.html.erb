@@ -5,9 +5,9 @@
 <div class="section-container--header row">
 </div>
   <% if @div_msg_menu %>
-  		<h2> <p>Todavia no tenemos el Menu disponible para el dia de hoy!</p>
-  		<p> Por favor intentalo mas tarde.</p>
-  		 </h2>
+      <h2> <p>Todavia no tenemos el Menu disponible para el dia de hoy!</p>
+      <p> Por favor intentalo mas tarde.</p>
+       </h2>
 
   <% end %>
   <% if @div_msg_franja %>
@@ -22,7 +22,7 @@
 <% if @div_compra %>
 <div class="col-md-10 col-xs-8">
     <h2>Nueva Compra</h2>
-	</div>
+  </div>
   <div class="col-md-12">
     <%= render 'form', compra: @compra %>
   </div>
