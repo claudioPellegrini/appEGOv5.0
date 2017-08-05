@@ -64,6 +64,11 @@ class ComprasController < ApplicationController
     control_usuario
     menu = Menu.find_by(fecha: Time.now.to_date)
     franjaActual = Franja.last
+    usu = Usuario.find_by(cuenta_id: current_cuentum.id) 
+    if usu.salario == 0 || usu.salario == nil
+      flash[:error] = "Aun no se ha cargado su salario al sistema"
+      redirect_to :action => "index"  
+    end
     if menu == nil
       @div_compra = false
       @div_msg_menu = true
