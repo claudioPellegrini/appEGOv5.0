@@ -114,6 +114,7 @@ class Compra < ApplicationRecord
 	def destroy_comprados
 		CompraProducto.where(compra_id:self.id).destroy_all
 		CompraBebida.where(compra_id:self.id).destroy_all
+		Calificacion.where(compra_id:self.id).destroy_all
 		# notify_observers(self, @productos)
 	end
 
