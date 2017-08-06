@@ -36,9 +36,15 @@ class StocksController < ApplicationController
     else
       valor = @stock.cant
       mi_bebida = Stock.where(bebida_id: @stock.bebida_id)
+      if mi_bebida.last != nil
+        
+      
       saldoAnterior = mi_bebida.last.cant    
       saldo = saldoAnterior + valor 
       @stock.cant = saldo
+      
+
+      end
     end
     respond_to do |format|
       if @stock.save

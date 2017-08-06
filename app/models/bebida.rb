@@ -19,8 +19,13 @@ class Bebida < ApplicationRecord
 	end
 
 	def mi_stock
-		saldo = Stock.where(bebida_id: self.id).last.cant
-		return saldo
+		sal = Stock.where(bebida_id: self.id).last
+		if sal != nil
+			saldo = sal.cant
+			return saldo
+		else
+			return 0
+		end
 		
 	end
 
