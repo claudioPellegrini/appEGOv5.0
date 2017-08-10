@@ -30,4 +30,15 @@ module ApplicationHelper
 		['USUARIO'],
   	]
   end
+
+  def califico_compra
+    [
+      '0 - MALA',
+      '1 - POBRE',
+       '2 - ACEPTABLE',
+       '3 - BUENA',
+      '4 - MUY BUENA',
+       '5 - EXCELENTE'
+    ] 
+  end
 end

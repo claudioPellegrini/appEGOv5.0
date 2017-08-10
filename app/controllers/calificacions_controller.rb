@@ -70,9 +70,9 @@ class CalificacionsController < ApplicationController
     end
 
   end
-  def calificando
-    byebug
-  end
+  # def calificando
+  #   byebug
+  # end
 
   # control de tipo de usuario logueado
   def control_usuario
