@@ -6,16 +6,17 @@ ActionMailer::Base.smtp_settings = {
    #  :password             => "Migra.2k17",
    #  :authentication       => "plain",
    #  :enable_starttls_auto => true }
-    :address => "smtp.vera.com.uy",
+    :address => "smtp.mail.yahoo.com",
 
     # :address              => "smtp.gmail.com",
     :port                 => 587,
 
     # :domain               => "gmail.com",
-    :domain               => "vera.com.uy",
+    :domain               => "yahoo.com",
     # :user_name            => "eattinggo@gmail.com",
-    :user_name            => "eatinggo@vera.com.uy",
-    :password             => "appEGO2017",
+    :user_name            => "eatinggo@yahoo.com",
+    # :password             => "appEGO2017",
+    :password             => "ortPWD2017",
     :authentication       => "plain",
     :enable_starttls_auto => true }
 
