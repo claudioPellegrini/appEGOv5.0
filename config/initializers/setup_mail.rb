@@ -9,8 +9,8 @@ ActionMailer::Base.smtp_settings = {
     :address => "smtp.mail.yahoo.com",
 
     # :address              => "smtp.gmail.com",
-    :port                 => 587,
-
+    # :port                 => 587,
+    :port                 => 465,
     # :domain               => "gmail.com",
     :domain               => "yahoo.com",
     # :user_name            => "eattinggo@gmail.com",
