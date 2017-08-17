@@ -15,7 +15,8 @@ class BarcodeController < ApplicationController
 		  	redirect_to :action => "index"
 		else	
 			compras = Compra.where(fecha: Time.now.to_date)
-			franjaActual = Franja.last			
+			franjaActual = Franja.last		
+			menu = Menu.find_by(fecha: Time.now.to_date)	
 		    compras.each do |c|
 			    if @usuario.cuenta_id == c.cuentum_id
 			        flash[:error] = "Ya has realizado un compra hoy, no puedes repetir!!"
@@ -24,6 +25,10 @@ class BarcodeController < ApplicationController
 		    end
 		    if franjaActual == nil		    	
 		    	flash[:error] = "No se reunen las condiciones para realizar una compra! Por favor, comuniquese con el administrador. (error: franjas)"
+		        redirect_to :action => "index"
+		    end
+		    if menu == nil
+		    	flash[:error] = "Todavia no tenemos el Menu disponible para el dia de hoy!! Por favor, comuniquese con el administrador."
 		        redirect_to :action => "index"
 		    end
 		end
@@ -57,6 +62,7 @@ class BarcodeController < ApplicationController
 	    cuenta = Cuentum.find_by(id: $usuarioBarcode.cuenta_id)
 	    @compra = cuenta.compras.new(compra_params)
 	    @compra.fecha =Time.now
+	    @compra.estado = "PENDIENTE"
 	    @compra.productos = params[:productos]
 	    @compra.bebidas = params[:bebidas]
 	    if params[:productos] == nil
