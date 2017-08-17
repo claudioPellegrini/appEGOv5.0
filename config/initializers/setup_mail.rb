@@ -6,10 +6,18 @@ ActionMailer::Base.smtp_settings = {
    #  :password             => "Migra.2k17",
    #  :authentication       => "plain",
    #  :enable_starttls_auto => true }
-    :address              => "smtp.gmail.com",
+
+    # :address              => "smtp.gmail.com",
+    # :port                 => 587,
+    # :domain               => "gmail.com",
+    # :user_name            => "eattinggo@gmail.com",
+    # :password             => "appEGO2017",
+    # :authentication       => "plain",
+
+    :address              => "mail.gmx.es",
     :port                 => 587,
-    :domain               => "gmail.com",
-    :user_name            => "eattinggo@gmail.com",
+    :domain               => "gmx.es",
+    :user_name            => "eatinggoapp@gmx.es",
     :password             => "appEGO2017",
     :authentication       => "plain",
     :enable_starttls_auto => true }
