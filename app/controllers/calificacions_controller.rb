@@ -32,7 +32,7 @@ class CalificacionsController < ApplicationController
   def create
     control_usuario
     @calificacion = Calificacion.new(calificacion_params)
-
+    
     respond_to do |format|
       if @calificacion.save
         format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }

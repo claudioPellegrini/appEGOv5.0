@@ -15,7 +15,25 @@
  </div> 
   <div class="panel-body form-group">
     <p><%= f.label :valor %></p>
-    <%= f.number_field :valor , :step => "1", min: 0, max: 5, class: 'form-control', placeholder: califico_compra %>
+    </br>
+    <%= f.radio_button :valor, 0 %>
+    <%= label_tag("0 - Mala") %>
+    </br>
+    <%= f.radio_button :valor, 1 %>
+    <%= label_tag("1 - Pobre") %>
+    </br>
+    <%= f.radio_button :valor, 2 %>
+    <%= label_tag("2 - Aceptable") %>
+    </br>
+    <%= f.radio_button :valor, 3 %>
+    <%= label_tag("3 - Buena") %>
+    </br>
+    <%= f.radio_button :valor, 4 %>
+    <%= label_tag("4 - Muy Buena") %>
+    </br>
+    <%= f.radio_button :valor, 5 %>
+    <%= label_tag("5 - Excelente") %>
+    </br>
   </div>
   
 
