@@ -20,7 +20,7 @@ ActionMailer::Base.smtp_settings = {
     :user_name            => "eatinggoapp@gmx.es",
     :password             => "appEGO2017",
     :authentication       => "plain",
-    :openssl_verify_mode => false,
+    :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
     :enable_starttls_auto => true }
 
 ActionMailer::Base.default_url_options[:host] = "localhost:3000"
