@@ -19,7 +19,7 @@ ActionMailer::Base.smtp_settings = {
     :domain               => "gmx.es",
     :user_name            => "eatinggoapp@gmx.es",
     :password             => "appEGO2017",
-    :authentication       => "plain",
+    :authentication       => "login",
     :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
     :enable_starttls_auto => true }
 
