@@ -29,8 +29,12 @@
   <%= @usuario.habilitado %>
 </p>
 
-<div class="btn-group-vertical">
-<%= link_to 'Editar', edit_usuario_path(@usuario), class: 'btn btn-default' %> 
-<%= link_to 'Volver', usuarios_path, class: 'btn btn-info' %>
+<div class="btn-group-justified"> 
+<%= link_to '', edit_usuario_path(@usuario), class: 'btn btn-default btn-sm glyphicon glyphicon-pencil', :title => "Editar" %>
+    <%= link_to '', edit_cuenta_path, class: 'btn btn-info btn-sm glyphicon glyphicon-warning-sign', :title => "Cambiar password" %>
 </div>
-
+</br>
+</br>
+<div class="btn-group-justified">
+  <%= link_to 'Volver', usuarios_path, class: 'btn btn-info' %>
+</div>

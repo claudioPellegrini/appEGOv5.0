@@ -32,7 +32,13 @@
   <%= @franja.tercera_precio %>
 </p>
 </br>
-<div class="btn-group-vertical">
-<%= link_to 'Editar', edit_franja_path(@franja), class: 'btn btn-default' %> 
-<%= link_to 'Volver', franjas_path, class: 'btn btn-info' %>
+<div class="btn-group-justified">
+<%= link_to '', edit_franja_path(@franja), class: 'btn btn-default btn-sm glyphicon glyphicon-pencil', :title => "Editar" %>
+
+</div>
+
+</br>
+</br>
+<div class="btn-group-justified">
+  <%= link_to 'Volver', franjas_path, class: 'btn btn-info' %>
 </div>

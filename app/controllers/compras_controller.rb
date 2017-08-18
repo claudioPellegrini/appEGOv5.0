@@ -35,6 +35,26 @@ class ComprasController < ApplicationController
   # GET /compras/1
   # GET /compras/1.json
   def show
+    usuarios = Usuario.all
+    if current_cuentum.email == "admin@admin.com"
+      @div_pedido = true
+      @div_usuario = false
+    else
+      usuarios.each do |u|
+        if cuentum_signed_in? && current_cuentum.id == u.cuenta_id
+          
+          if u.rol == "ADMINISTRADOR" || u.rol == "OPERARIO"
+            @div_pedido = true
+            @div_usuario = false           
+            
+          else
+            
+            @div_pedido = false
+            @div_usuario = true
+          end
+        end
+      end
+    end
     @bebidas = Bebida.all
     @productos = Producto.all
     @productos_en_compra = Array.new

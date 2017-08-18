@@ -33,17 +33,42 @@ Valor total del consumo: <strong>$<%= @compra.valor_final_ticket %></strong>
         
   <%end%>
  
-  <div class="btn-group-vertical">
+  <div class="btn-group-justified">
 
-<%= link_to 'Calificar', calificacions_path(@compra), class: 'btn btn-default'  %>
+<%= link_to '', calificacions_path(@compra), class: 'btn btn-success btn-sm glyphicon glyphicon-heart', :title => 'Calificar'  %>
 
 </div>
 
 
-<div class="btn-group-vertical">
+<div class="btn-group-justified">
+  <% if @div_usuario %>
+    
+  
+    <% if @compra.fecha == Time.now.to_date && @compra.estado == "PENDIENTE"%>         
+    <%= link_to '',
+                @compra,
+                method: :delete,
+                class: 'btn btn-warning btn-sm glyphicon glyphicon-remove',
+                data: { confirm: 'Esta seguro de eliminar esta compra?' }, :title => "Eliminar" %>
+  
+    <% end %>
+  <% end %> 
+  <% if @div_pedido %> 
+  
+    <%= link_to '',
+                @compra,
+                method: :delete,
+                class: 'btn btn-warning btn-lg glyphicon glyphicon-remove',
+                data: { confirm: 'Esta seguro de eliminar esta compra?' }, :title => "Eliminar" %>
+    <%= link_to '',edit_compra_path(@compra), class: 'btn btn-info btn-lg glyphicon glyphicon-cutlery', :title => "Preparar pedido" %>
+  <% end %>
 
-<%= link_to 'Volver', compras_path, class: 'btn btn-default'  %>
 
+</div>
+</br>
+</br>
+<div class="btn-group-justified">
+  <%= link_to 'Volver', compras_path, class: 'btn btn-default'  %>
 </div>
 
 
