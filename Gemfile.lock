@@ -221,7 +221,7 @@ DEPENDENCIES
   mail
   pg (~> 0.18)
   puma (~> 3.0)
-  rack-cors (~> 0.3.1)
+  rack-cors
   railroady
   rails (~> 5.0.2)
   rails-i18n

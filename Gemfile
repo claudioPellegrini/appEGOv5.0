@@ -28,7 +28,7 @@ gem 'roo-xls'
 gem 'googlecharts'
 gem 'rails-observers'
 gem 'wisper', '2.0.0'
-gem 'rack-cors', '~> 0.3.1'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
