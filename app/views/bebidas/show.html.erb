@@ -24,8 +24,25 @@
   <strong>Stock:</strong>
   <%= @bebida.mi_stock %>
 </p>
-<div class="btn-group-vertical">
-<%= link_to 'Editar', edit_bebida_path(@bebida), class: 'btn btn-default' %> 
-<%= link_to 'Volver', bebidas_path, class: 'btn btn-info' %>
-<%= link_to 'Abastecer stock', stocks_path, class: 'btn btn-default' %>
+<div class="btn-group-justified">
+  <%= link_to '', edit_bebida_path(@bebida), class: 'btn btn-default btn-sm glyphicon glyphicon-pencil', :title => "Editar" %>
+    
+    
+    <%= link_to '',
+                @bebida,
+                method: :delete,
+                class: 'btn btn-warning btn-sm glyphicon glyphicon-remove',
+                data: { confirm: 'Esta seguro de eliminar esta bebida?' }, :title => "Eliminar" %>
+
+</div>
+</br>
+<div class="btn-group-justified">                
+
+  <%= link_to 'Abastecer stock', stocks_path, class: 'btn btn-default ' %>
+</div>
+
+</br>
+</br>
+<div class="btn-group-justified">
+  <%= link_to 'Volver', bebidas_path, class: 'btn btn-info' %>
 </div>

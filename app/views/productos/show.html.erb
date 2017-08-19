@@ -14,8 +14,12 @@
   <%= @producto.tipo.nombre if @producto.tipo%>
 </p>
 
-<div class="btn-group-vertical">
-<%= link_to 'Editar', edit_producto_path(@producto), class: 'btn btn-default' %> 
-<%= link_to 'Volver', productos_path, class: 'btn btn-info' %>
-</div>
+<div class="btn-group-justified">
+<%= link_to '', edit_producto_path(@producto), class: 'btn btn-default btn-sm glyphicon glyphicon-pencil', :title => "Editar" %>
 
+</div>
+</br>
+</br>
+<div class="btn-group-justified">
+	<%= link_to 'Volver', productos_path, class: 'btn btn-info' %>
+</div>

@@ -42,12 +42,12 @@ Valor total del consumo: <strong>$<%= @compra.valor_final_ticket %></strong>
 		<%= form_for(@compra) do |f| %>
 			<%= f.hidden_field :estado, :value => "FINALIZADO", :hidden => true, class: 'form-control' %>
 
-  			<%= f.submit "PRONTO!!", class: 'btn btn-info btn-lg' %>
+  			<%= f.submit "PRONTO!!", class: 'btn btn-info btn-lg ' %>
 
     	<% end %>
  <br>
 
-  <div class="btn-group-vertical">
+  <div class="btn-group-justified">
 
 <%= link_to 'Volver', compras_path , class: 'btn btn-default'  %>
 

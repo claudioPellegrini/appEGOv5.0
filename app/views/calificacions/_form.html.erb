@@ -15,7 +15,25 @@
  </div> 
   <div class="panel-body form-group">
     <p><%= f.label :valor %></p>
-    <%= f.number_field :valor , :step => "1", min: 0, max: 5, class: 'form-control', placeholder: califico_compra %>
+    </br>
+    <%= f.radio_button :valor, 0 %>
+    <%= f.label :valor, "0 - Mala", value: 0 %>
+    </br>
+    <%= f.radio_button :valor, 1 %>
+    <%= f.label :valor, "1 - Pobre", value: 1 %>
+    </br>
+    <%= f.radio_button :valor, 2 %>
+    <%= f.label :valor, "2 - Aceptable", value: 2  %>
+    </br>
+    <%= f.radio_button :valor, 3 %>
+    <%= f.label :valor, "3 - Buena", value: 3 %>
+    </br>
+    <%= f.radio_button :valor, 4 %>
+    <%= f.label :valor, "4 - Muy Buena", value: 4 %>
+    </br>
+    <%= f.radio_button :valor, 5 %>
+    <%= f.label :valor, "5 - Excelente", value:5 %>
+    </br>
   </div>
   
 
@@ -24,7 +42,7 @@
       <div class="btn-group btn-group-justified">
         
         <div class="btn-group">
-        <%= f.submit "Realizar calificacion", class: 'btn btn-info ' %>
+        <%= f.submit "Calificar", class: 'btn btn-info ' %>
         </div>
         <div class="btn-group">
         <%= link_to 'Cancelar', calificacions_path, class: 'btn btn-info '  %>
