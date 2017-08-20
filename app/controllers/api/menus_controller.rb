@@ -8,8 +8,8 @@ class Api::MenusController < ApplicationController
     @menu = Menu.where(fecha: Time.now).last
     if @menu.present?
         respond_to do |format|
-          format.json  { render :json => {:menu => @menu, 
-                                      :productos => @menu.productos }}
+          format.json  { render :json => {:results =>[:menu => @menu, 
+                                      :productos => @menu.productos ]}}
       end
     end
   end
