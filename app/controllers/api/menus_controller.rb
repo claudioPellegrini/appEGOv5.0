@@ -5,8 +5,7 @@ class Api::MenusController < ApplicationController
  
 
   def index
-    # @menu = Menu.where(fecha: Time.now).last
-    @menus= Menu.all
+    @menu = Menu.where(fecha: Time.now).last
     if @menu.present?
         respond_to do |format|
           format.json  { render :json => {:menu => @menu, 
