@@ -24,14 +24,14 @@
 <%end%>
 
 <div class="btn-group-justified">
-<%if Time.now.to_date <= @menu.fecha.to_date %>
+<%if Time.now.to_date <= @menu.fecha.to_date && @compras_del_dia %>
     
     <%= link_to '', edit_menu_path(@menu), class: 'btn btn-default btn-sm glyphicon glyphicon-pencil', :title => "Editar" %>
     <%= link_to '',
                 @menu,
                 method: :delete,
                 class: 'btn btn-warning btn-sm glyphicon glyphicon-remove',
-                data: { confirm: 'Esta seguro de eliminar este producto?' }, :title => "Eliminar" %>
+                data: { confirm: 'Esta seguro de eliminar este menu?' }, :title => "Eliminar" %>
     <%end%>
 </div>
 </br>

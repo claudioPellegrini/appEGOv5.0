@@ -27,6 +27,7 @@ class MenusController < ApplicationController
   # GET /menus/1.json
   def show
     control_usuario
+    control_compras
     @tipos = Tipo.all
   end
 
@@ -41,6 +42,7 @@ class MenusController < ApplicationController
 
   # GET /menus/1/edit
   def edit
+    
     control_usuario
     @productos = Producto.all
     @tipos = Tipo.all
@@ -148,6 +150,16 @@ class MenusController < ApplicationController
       end
     end
   end
+
+# control de compras ya realizadas en ese dia
+  def control_compras
+    compras = Compra.where(fecha: Time.now.to_date)
+    @compras_del_dia = false
+    if compras[0] == nil
+      @compras_del_dia = true
+    end
+  end
+
 
   
 
