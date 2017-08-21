@@ -15,5 +15,13 @@ module AppEGO2
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = "Montevideo"
     config.i18n.default_locale = :es
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
   end
 end

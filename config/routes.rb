@@ -68,6 +68,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     resources :menus, only: [:index, :show]
+    resources :tipos, only: [:index]
     resources :usuarios
     resource :compras, only: [:create, :index, :destroy]
     resource :sessions, only: [:create, :destroy]
