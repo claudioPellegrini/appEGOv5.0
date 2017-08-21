@@ -32,14 +32,19 @@ class CalificacionsController < ApplicationController
   def create
     control_usuario
     @calificacion = Calificacion.new(calificacion_params)
-    
-    respond_to do |format|
-      if @calificacion.save
-        format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }
-        format.json { render :show, status: :created, location: @calificacion }
+    la_compra = Compra.find_by(id: calificacion_params[:compra_id])
+    if la_compra != nil && la_compra.estado == "PENDIENTE"
+          flash[:error] = "La compra debe estar Finalizada para realizar la calificacion!"
+            redirect_to :action => "new"      
       else
-        format.html { render :new }
-        format.json { render json: @calificacion.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @calificacion.save
+          format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }
+          format.json { render :show, status: :created, location: @calificacion }
+        else
+          format.html { render :new }
+          format.json { render json: @calificacion.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
