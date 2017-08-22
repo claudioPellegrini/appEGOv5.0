@@ -19,6 +19,13 @@ class CalificacionsController < ApplicationController
   # GET /calificacions/new
   def new
     control_usuario
+    # @compras = Compra.pluck(:id)
+    @compras_id_en_califica = Calificacion.pluck(:compra_id)
+    # @compras =  Compra.all.order('fecha DESC')
+    @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE cuentum_id = (?) AND ID NOT IN (?) ORDER BY FECHA ASC", current_cuentum,@compras_id_en_califica])
+    # @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE ID NOT IN (?)",@compras_id_en_califica])
+   
+
     @calificacion = Calificacion.new
   end
 
