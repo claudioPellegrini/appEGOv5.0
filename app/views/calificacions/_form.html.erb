@@ -6,7 +6,7 @@
       <% end %>
       <div class="panel-body form-group">
 
-        <p><%= f.label :compra_id %></p>
+        <p><%= f.label "Compras sin calificar" %></p>
         <%= f.select :compra_id,  @compras.collect {|t| [ t.fecha , t.id ] }, { include_blank: 'Seleccionar Compra' }, class: 'form-control' %>
       </div>
   
@@ -14,7 +14,7 @@
  <div class="ec-stars-wrapper">
  </div> 
   <div class="panel-body form-group">
-    <p><%= f.label :valor %></p>
+    <p><%= f.label "Seleccione un valor" %></p>
     </br>
     <%= f.radio_button :valor, 0 %>
     <%= f.label :valor, "0 - Mala", value: 0 %>
