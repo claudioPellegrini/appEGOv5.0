@@ -19,6 +19,13 @@ class CalificacionsController < ApplicationController
   # GET /calificacions/new
   def new
     control_usuario
+    # @compras = Compra.pluck(:id)
+    @compras_id_en_califica = Calificacion.pluck(:compra_id)
+    # @compras =  Compra.all.order('fecha DESC')
+    @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE cuentum_id = (?) AND ID NOT IN (?) ORDER BY FECHA ASC", current_cuentum,@compras_id_en_califica])
+    # @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE ID NOT IN (?)",@compras_id_en_califica])
+   
+
     @calificacion = Calificacion.new
   end
 
@@ -32,14 +39,19 @@ class CalificacionsController < ApplicationController
   def create
     control_usuario
     @calificacion = Calificacion.new(calificacion_params)
-    
-    respond_to do |format|
-      if @calificacion.save
-        format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }
-        format.json { render :show, status: :created, location: @calificacion }
+    la_compra = Compra.find_by(id: calificacion_params[:compra_id])
+    if la_compra != nil && la_compra.estado == "PENDIENTE"
+          flash[:error] = "La compra debe estar Finalizada para realizar la calificacion!"
+            redirect_to :action => "new"      
       else
-        format.html { render :new }
-        format.json { render json: @calificacion.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @calificacion.save
+          format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }
+          format.json { render :show, status: :created, location: @calificacion }
+        else
+          format.html { render :new }
+          format.json { render json: @calificacion.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

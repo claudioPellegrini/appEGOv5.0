@@ -31,7 +31,9 @@
 
 <div class="btn-group-justified"> 
 <%= link_to '', edit_usuario_path(@usuario), class: 'btn btn-default btn-sm glyphicon glyphicon-pencil', :title => "Editar" %>
+<% if @usuario.cuenta_id == current_cuentum.id %>
     <%= link_to '', edit_cuenta_path, class: 'btn btn-info btn-sm glyphicon glyphicon-warning-sign', :title => "Cambiar password" %>
+<% end %>
 </div>
 </br>
 </br>

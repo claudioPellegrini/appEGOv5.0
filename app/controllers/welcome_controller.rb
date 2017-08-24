@@ -18,6 +18,11 @@ class WelcomeController < ApplicationController
         if u.rol == "OPERARIO" 
           @div_opera = true
         end
+        if u.habilitado == false
+          @div_opera = false
+          @div_usuario = false
+          flash[:error] = "Su usuario no esta habilitado, comuniquese con el Administrador"
+        end
 
       end
       

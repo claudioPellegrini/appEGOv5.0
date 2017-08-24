@@ -1,5 +1,8 @@
 <h2>Hola <%= @nombre %> !</h2>
-
+</br>
+<% if flash[:error] %>
+    <div class="alert alert-danger"><%= flash[:error] %></div>
+  <% end %>
 
  
 </br>
