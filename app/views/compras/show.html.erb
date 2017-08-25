@@ -32,7 +32,10 @@ Valor total del consumo: <strong>$<%= @compra.valor_final_ticket %></strong>
           <br>
         
   <%end%>
- 
+  <strong>Tipo de pedido:</strong>
+  <%= @compra.tipo_pedido %>
+  <br>
+  <br>
   <div class="btn-group-justified">
 
 <%= link_to '', calificacions_path(@compra), class: 'btn btn-success btn-sm glyphicon glyphicon-heart', :title => 'Calificar'  %>

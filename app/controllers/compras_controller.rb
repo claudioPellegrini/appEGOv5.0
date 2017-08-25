@@ -175,11 +175,13 @@ class ComprasController < ApplicationController
     @compra.estado = "PENDIENTE"
     @compra.productos = params[:productos]
     @compra.bebidas = params[:bebidas]  
-
+    @compra.tipo_pedido = params[:tipo_pedido]
     if params[:productos] == nil
       flash[:error] = "Debe seleccionar al menos 1 producto!"
             redirect_to :action => "new"
-      
+    elsif params[:tipo_pedido] == "Seleccione tipo de pedido"
+      flash[:error] = "Debe indicar que tipo de pedido es!"
+            redirect_to :action => "new"  
     else
       @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
@@ -324,7 +326,7 @@ class ComprasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def compra_params
-      params.require(:compra).permit(:fecha, :productos, :bebidas, :estado)
+      params.require(:compra).permit(:fecha, :productos, :bebidas, :estado, :tipo_pedido)
     end
 
   
