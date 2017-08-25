@@ -55,6 +55,7 @@ class UsuariosController < ApplicationController
       @usuario = Usuario.new(usuario_params)
       @usuario.nombres =  @usuario.nombres.upcase
       @usuario.apellidos =  @usuario.apellidos.upcase
+      @usuario.salario = 0
       respond_to do |format|
         if @usuario.save
           format.html { redirect_to @usuario, notice: 'El Usuario se ha creado correctamente.' }

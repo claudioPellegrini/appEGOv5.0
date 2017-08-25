@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806014103) do
+ActiveRecord::Schema.define(version: 20170825155253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170806014103) do
     t.integer  "cuentum_id"
     t.integer  "valor_final_ticket"
     t.string   "estado"
+    t.string   "tipo_pedido"
     t.index ["cuenta_id"], name: "index_compras_on_cuenta_id", using: :btree
     t.index ["cuentum_id"], name: "index_compras_on_cuentum_id", using: :btree
   end

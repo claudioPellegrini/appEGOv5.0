@@ -41,4 +41,11 @@ module ApplicationHelper
        '5 - EXCELENTE'
     ] 
   end
+
+  def tipo_de_pedido
+    [ 
+    ['COMEDOR'],
+    ['DELIVERY'],
+    ]
+  end
 end

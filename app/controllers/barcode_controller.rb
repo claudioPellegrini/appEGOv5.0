@@ -39,6 +39,10 @@ class BarcodeController < ApplicationController
   		if $usuarioBarcode == nil
   			get_barcode
   		end
+  		if $usuarioBarcode.salario == 0 || $usuarioBarcode.salario == nil
+      		flash[:error] = "Aun no se ha cargado su salario al sistema"
+      		redirect_to :action => "index"  
+    	end
 	    @barcode = Compra.new
 	    @bebidas = Bebida.all
 	    
@@ -63,6 +67,7 @@ class BarcodeController < ApplicationController
 	    @compra = cuenta.compras.new(compra_params)
 	    @compra.fecha =Time.now
 	    @compra.estado = "PENDIENTE"
+	    @compra.tipo_pedido = "COMEDOR"
 	    @compra.productos = params[:productos]
 	    @compra.bebidas = params[:bebidas]
 	    if params[:productos] == nil
