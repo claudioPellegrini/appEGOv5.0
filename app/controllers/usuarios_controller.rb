@@ -31,6 +31,7 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/new
   def new
+    control_usuario
     @usuario = Usuario.new
     if current_cuentum.email == "admin@admin.com" 
       @div_edit_admin = true
@@ -61,6 +62,7 @@ class UsuariosController < ApplicationController
           format.html { redirect_to @usuario, notice: 'El Usuario se ha creado correctamente.' }
           format.json { render :show, status: :created, location: @usuario }
         else
+          @div_edit_admin = true
           format.html { render :new }
           format.json { render json: @usuario.errors, status: :unprocessable_entity }
         end
@@ -77,6 +79,7 @@ class UsuariosController < ApplicationController
         format.html { redirect_to @usuario, notice: 'El Usuario se ha editado correctamente.' }
         format.json { render :show, status: :ok, location: @usuario }
       else
+        @div_edit_admin = true
         format.html { render :edit }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
       end
