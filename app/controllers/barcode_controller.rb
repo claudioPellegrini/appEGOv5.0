@@ -10,7 +10,7 @@ class BarcodeController < ApplicationController
  	def get_barcode		
 		ci = params[:cedula][:ci]
 		@usuario = Usuario.find_by(ci: ci)		  	
-		if @usuario == nil	  		
+		if @usuario == nil || @usuario.habilitado == false	  		
 		  	flash[:error] = "Usuario no valido, por favor comuniquese con el Administrador!"
 		  	redirect_to :action => "index"
 		else	

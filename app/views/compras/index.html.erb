@@ -19,11 +19,15 @@
     <h1>Compras realizadas</h1>
   <% end %>
   <% if @div_pedido %>
+    <div class="btn-group btn-group-justified">
+      <%= link_to 'Volver', root_path, class: 'btn btn-default' %>
+    </div>
     <br>
     <h1>Pedidos pendientes</h1>
   <% end %>
   <div class="row">
     <div class="col-md-12">
+    
       <div class="listing">
         <div class="table-responsive">
           <table class="table table-striped">
