@@ -40,7 +40,14 @@ class CalificacionsController < ApplicationController
     control_usuario
     @calificacion = Calificacion.new(calificacion_params)
     la_compra = Compra.find_by(id: calificacion_params[:compra_id])
-    if la_compra != nil && la_compra.estado == "PENDIENTE"
+    el_valor = calificacion_params[:valor]
+    if la_compra == nil
+      flash[:error] = "Debe seleccionar una compra para realizar la calificacion!"
+            redirect_to :action => "new"
+    elsif el_valor == nil
+      flash[:error] = "Debe seleccionar un valor para realizar la calificacion!"
+            redirect_to :action => "new"
+    elsif la_compra != nil && la_compra.estado == "PENDIENTE"
           flash[:error] = "La compra debe estar Finalizada para realizar la calificacion!"
             redirect_to :action => "new"      
       else
