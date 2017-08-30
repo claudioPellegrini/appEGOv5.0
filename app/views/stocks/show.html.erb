@@ -6,15 +6,15 @@
 </p>
 <p>
   <strong>Bebida:</strong>
-  <%= @stock.bebida.nombre %>
+  <%= @stock.bebida.nombre if @stock.bebida %>
 </p>
 <p>
   <strong>Tipo:</strong>
-  <%= @stock.bebida.tipo %>
+  <%= @stock.bebida.tipo if @stock.bebida%>
 </p>
 <p>
   <strong>Tamaño:</strong>
-  <%= @stock.bebida.tamanio %>
+  <%= @stock.bebida.tamanio if @stock.bebida%>
 </p>
 <p>
   <strong>Cant:</strong>
@@ -29,5 +29,10 @@
 <!-- 
 <%= link_to 'Editar', edit_stock_path(@stock), class: 'btn btn-default' %> 
  -->
+ <%= link_to '',
+                @stock,
+                method: :delete,
+                class: 'btn btn-warning btn-sm glyphicon glyphicon-remove',
+                data: { confirm: 'Esta seguro de eliminar este stock?' }, :title => "Eliminar" %>
 <%= link_to 'Volver', stocks_path, class: 'btn btn-info' %>
 </div>
