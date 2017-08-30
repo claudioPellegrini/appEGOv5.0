@@ -65,12 +65,12 @@ class TiposController < ApplicationController
     if @tipo_elegido.blank?
       @tipo.destroy
       respond_to do |format|
-        format.html { redirect_to tipos_url, notice: 'Tipo was successfully destroyed.' }
+        format.html { redirect_to tipos_url, notice: 'El Tipo de Producto ha sido eliminado correctamente.' }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html {redirect_to tipos_url, notice: 'No puede eliminarse el Tipo, ya que se ha creado un Producto de este Tipo'}
+        format.html {redirect_to tipos_url, notice: 'No puede eliminarse el Tipo de Producto, ya que se ha creado un Producto de este Tipo'}
       end
     end
   end

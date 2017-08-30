@@ -50,7 +50,7 @@ class CalificacionsController < ApplicationController
     elsif la_compra != nil && la_compra.estado == "PENDIENTE"
           flash[:error] = "La compra debe estar Finalizada para realizar la calificacion!"
             redirect_to :action => "new"      
-      else
+    else
       respond_to do |format|
         if @calificacion.save
           format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }

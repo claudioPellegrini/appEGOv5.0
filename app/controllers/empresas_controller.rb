@@ -61,11 +61,18 @@ class EmpresasController < ApplicationController
   # DELETE /empresas/1.json
   def destroy
     control_usuario
-    @empresa.destroy
-    respond_to do |format|
-      format.html { redirect_to empresas_url, notice: 'La Empresa se ha eliminado correctamente.' }
-      format.json { head :no_content }
-    end
+    @usuarios_empresa = Usuario.where(empresa_id: @empresa.id)
+    if @usuarios_empresa.blank?
+      @empresa.destroy
+      respond_to do |format|
+        format.html { redirect_to empresas_url, notice: 'La Empresa se ha eliminado correctamente.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to empresas_url, notice: 'No puede eliminarse la Empresa, ya que existen usuarios asignados a la misma'}
+      end
+    end  
   end
 
 
