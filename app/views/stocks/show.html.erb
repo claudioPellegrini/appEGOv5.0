@@ -28,11 +28,12 @@
 <div class="btn-group-justified">
 <!-- 
 <%= link_to 'Editar', edit_stock_path(@stock), class: 'btn btn-default' %> 
- -->
+ 
  <%= link_to '',
                 @stock,
                 method: :delete,
                 class: 'btn btn-warning btn-sm glyphicon glyphicon-remove',
                 data: { confirm: 'Esta seguro de eliminar este stock?' }, :title => "Eliminar" %>
+-->                
 <%= link_to 'Volver', stocks_path, class: 'btn btn-info' %>
 </div>
