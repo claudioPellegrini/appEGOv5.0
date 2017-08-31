@@ -73,7 +73,8 @@ class UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   # PATCH/PUT /usuarios/1.json
   def update
-
+    @usuario.nombres =  @usuario.nombres.upcase
+    @usuario.apellidos =  @usuario.apellidos.upcase
     respond_to do |format|
       if @usuario.update(usuario_params)
         format.html { redirect_to @usuario, notice: 'El Usuario se ha editado correctamente.' }
