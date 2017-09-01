@@ -4,6 +4,7 @@
       <% calificacion.errors.full_messages.each do |message| %>
         <div class="alert alert-danger"><%= message %></div>
       <% end %>
+
       <div class="panel-body form-group">
 
         <p><%= f.label "Compras sin calificar" %></p>
@@ -40,10 +41,11 @@
 
   <div class="col-md-12">
       <div class="btn-group btn-group-justified">
-        
+      <% if @compras.present? %>  
         <div class="btn-group">
         <%= f.submit "Calificar", class: 'btn btn-info ' %>
         </div>
+      <% end %>  
         <div class="btn-group">
         <%= link_to 'Cancelar', calificacions_path, class: 'btn btn-info '  %>
         </div>
