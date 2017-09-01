@@ -314,3 +314,21 @@ text-decoration: none;
 .ec-stars-wrapper > prueboClase:hover ~ a {
   color: #888;
 }
+.pdf_titulos{
+  text-align: justify;
+  font-size: 250%;
+  color: darken(rgb(246, 251, 251), 40%);
+}
+
+.pdf_productos{
+  text-align: justify;
+  text-indent: 150px;
+  color: darken(rgb(119, 119, 119), 30%);
+  font-size: 200%;
+}
+
+.pdf_fecha{
+  text-align: center;
+  font-size: 350%;
+  color: darken(rgb(246, 251, 251), 60%);
+}
