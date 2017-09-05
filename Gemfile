@@ -30,10 +30,11 @@ gem 'rails-observers'
 gem 'wisper', '2.0.0'
 gem 'rack-cors', :require => 'rack/cors'
 
+# consulta gns
 gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
-
+# 
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

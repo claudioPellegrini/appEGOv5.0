@@ -20,11 +20,13 @@ class CalificacionsController < ApplicationController
   def new
     control_usuario
     # @compras = Compra.pluck(:id)
+    #array con los id de las compras
     @compras_id_en_califica = Calificacion.pluck(:compra_id)
+    byebug
     # @compras =  Compra.all.order('fecha DESC')
-    @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE cuentum_id = (?) AND ID NOT IN (?) ORDER BY FECHA ASC", current_cuentum,@compras_id_en_califica])
+    @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE cuentum_id = (?) AND compras.ID NOT IN (?) ORDER BY FECHA ASC", current_cuentum, @compras_id_en_califica])
     # @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE ID NOT IN (?)",@compras_id_en_califica])
-   
+   byebug
 
     @calificacion = Calificacion.new
   end

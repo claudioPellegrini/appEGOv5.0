@@ -16,10 +16,19 @@ class GnsController < ApplicationController
 				$empresa = params[:consultaConsumos][:"empresa_id"]
 				if $empresa != ""					
 					$empresa_nombre = Empresa.find($empresa).nombre
+					# redirect_back(fallback_location: root_path)
+					# return
+
 					redirect_to "/gns/consultaConsumos.xlsx"
+
+					# return
+					# redirect_to  "welcome/index"
+					
+					
 				else
 					flash[:error] = "Debe seleccionar una empresa"
 		  			redirect_to :action => "index"
+
 		  		end
 			else
 				flash[:error] = "La fecha inicial debe ser menor a la fecha final"
@@ -39,7 +48,9 @@ class GnsController < ApplicationController
 		@consumos = Usuario.find_by_sql(["select nombres, apellidos, sum(Compras.valor_final_ticket)as total, count(distinct Compras.fecha)as consumos from Compras, Usuarios where Usuarios.cuenta_id = Compras.cuentum_id and Usuarios.empresa_id = ? and Compras.fecha IN (SELECT fecha FROM Compras WHERE fecha BETWEEN ? AND ?)group by Usuarios.nombres, Usuarios.apellidos", $empresa, $fechaInicial, $fechaFinal])
 		respond_to do |format| 
        		format.xlsx {render xlsx: 'consultaConsumos',filename: "consultaConsumos.xlsx"}
+       		
     	end    	
+    	# redirect_to "welcome/index"
     end
 
     # control de tipo de usuario logueado
