@@ -21,16 +21,16 @@
     	 <p><%= f.label "Empresa" %></p>
           <%= f.select :empresa_id,  Empresa.all.collect {|e| [ e.nombre, e.id ] }, { include_blank: 'Seleccionar empresa' }, class: 'form-control' %>
  		</div>
-        <div class="col-md-12">
+    <div class="col-md-12">
       <div class="btn-group btn-group-justified">
         
         <div class="btn-group">
-        <%= f.button "Generar archivo", class: 'btn btn-info prueboHabilitar ' %>
+
+          <%= f.button "Generar archivo", class: 'btn btn-info ' %>
+          <%= link_to 'Nuevo reporte', { :controller => :gns, :action => :index }, class: 'btn btn-default '  %>
+          <%= link_to 'Volver', { :controller => :bi, :action => :index }, class: 'btn btn-info '  %>
+        
         </div>
-        <div class="btn-group">
-        <%= link_to 'Volver', { :controller => :bi, :action => :index }, class: 'btn btn-info '  %>
-        </div>
-      </div>
     </div>
   </div>
   </div>
