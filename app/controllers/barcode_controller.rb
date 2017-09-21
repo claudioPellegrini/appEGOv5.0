@@ -11,7 +11,7 @@ class BarcodeController < ApplicationController
 		ci = params[:cedula][:ci]
 		@usuario = Usuario.find_by(ci: ci)		  	
 		if @usuario == nil || @usuario.habilitado == false	  		
-		  	flash[:error] = "Usuario no valido, por favor comuniquese con el Administrador!"
+		  	flash[:error] = "Usuario no válido, por favor comuniquese con el Administrador!"
 		  	redirect_to :action => "index"
 		else	
 			compras = Compra.where(fecha: Time.now.to_date)
@@ -24,11 +24,11 @@ class BarcodeController < ApplicationController
 			    end		    
 		    end
 		    if franjaActual == nil		    	
-		    	flash[:error] = "No se reunen las condiciones para realizar una compra! Por favor, comuniquese con el administrador. (error: franjas)"
+		    	flash[:error] = "No se reunen las condiciones para realizar una compra! Por favor, comuníquese con el administrador. (error: franjas)"
 		        redirect_to :action => "index"
 		    end
 		    if menu == nil
-		    	flash[:error] = "Todavia no tenemos el Menu disponible para el dia de hoy!! Por favor, comuniquese con el administrador."
+		    	flash[:error] = "Todavía no tenemos el Menú disponible para el dia de hoy!! Por favor, comuníquese con el administrador."
 		        redirect_to :action => "index"
 		    end
 		end
@@ -40,7 +40,7 @@ class BarcodeController < ApplicationController
   			get_barcode
   		end
   		if $usuarioBarcode.salario == 0 || $usuarioBarcode.salario == nil
-      		flash[:error] = "Aun no se ha cargado su salario al sistema"
+      		flash[:error] = "Aún no se ha cargado su salario al sistema"
       		redirect_to :action => "index"  
     	end
 	    @barcode = Compra.new
@@ -100,7 +100,7 @@ class BarcodeController < ApplicationController
 	  def valorTicket    
 	    usuario = $usuarioBarcode
 	    menu = Menu.find_by(fecha: Time.now)
-	    # byebug
+	    
 	    franjaActual = Franja.last
 	    if menu == nil
 	      return 0
@@ -118,7 +118,7 @@ class BarcodeController < ApplicationController
 	  end
 
   	def show
-  		@message = ">>>	La Compra se realizo exitosamente!!"
+  		@message = ">>>	La Compra se realizó exitosamente!!"
   		@usuario = nil
   		$usuarioBarcode = nil
   	end

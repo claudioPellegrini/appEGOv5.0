@@ -52,7 +52,7 @@ Valor total del consumo: <strong>$<%= @compra.valor_final_ticket %></strong>
                 @compra,
                 method: :delete,
                 class: 'btn btn-warning btn-sm glyphicon glyphicon-remove',
-                data: { confirm: 'Esta seguro de eliminar esta compra?' }, :title => "Eliminar" %>
+                data: { confirm: 'Está seguro de eliminar esta compra?' }, :title => "Eliminar" %>
   
     <% end %>
   <% end %> 
@@ -62,7 +62,7 @@ Valor total del consumo: <strong>$<%= @compra.valor_final_ticket %></strong>
                 @compra,
                 method: :delete,
                 class: 'btn btn-warning btn-lg glyphicon glyphicon-remove',
-                data: { confirm: 'Esta seguro de eliminar esta compra?' }, :title => "Eliminar" %>
+                data: { confirm: 'Está seguro de eliminar esta compra?' }, :title => "Eliminar" %>
     <%= link_to '',edit_compra_path(@compra), class: 'btn btn-info btn-lg glyphicon glyphicon-cutlery', :title => "Preparar pedido" %>
   <% end %>
 

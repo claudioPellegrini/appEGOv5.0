@@ -19,14 +19,12 @@ class CalificacionsController < ApplicationController
   # GET /calificacions/new
   def new
     control_usuario
-    # @compras = Compra.pluck(:id)
+    
     #array con los id de las compras
     @compras_id_en_califica = Calificacion.pluck(:compra_id)
-    byebug
-    # @compras =  Compra.all.order('fecha DESC')
+    
     @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE cuentum_id = (?) AND compras.ID NOT IN (?) ORDER BY FECHA ASC", current_cuentum, @compras_id_en_califica])
-    # @compras = Compra.find_by_sql(["SELECT COMPRAS.* FROM COMPRAS WHERE ID NOT IN (?)",@compras_id_en_califica])
-   byebug
+  
 
     @calificacion = Calificacion.new
   end
@@ -44,18 +42,18 @@ class CalificacionsController < ApplicationController
     la_compra = Compra.find_by(id: calificacion_params[:compra_id])
     el_valor = calificacion_params[:valor]
     if la_compra == nil
-      flash[:error] = "Debe seleccionar una compra para realizar la calificacion!"
+      flash[:error] = "Debe seleccionar una compra para realizar la calificación!"
             redirect_to :action => "new"
     elsif el_valor == nil
-      flash[:error] = "Debe seleccionar un valor para realizar la calificacion!"
+      flash[:error] = "Debe seleccionar un valor para realizar la calificación!"
             redirect_to :action => "new"
     elsif la_compra != nil && la_compra.estado == "PENDIENTE"
-          flash[:error] = "La compra debe estar Finalizada para realizar la calificacion!"
+          flash[:error] = "La compra debe estar Finalizada para realizar la calificación!"
             redirect_to :action => "new"      
     else
       respond_to do |format|
         if @calificacion.save
-          format.html { redirect_to @calificacion, notice: 'La calificacion se ha realizado correctamente.' }
+          format.html { redirect_to @calificacion, notice: 'La calificación se ha realizado correctamente.' }
           format.json { render :show, status: :created, location: @calificacion }
         else
           format.html { render :new }
@@ -71,7 +69,7 @@ class CalificacionsController < ApplicationController
     control_usuario
     respond_to do |format|
       if @calificacion.update(calificacion_params)
-        format.html { redirect_to @calificacion, notice: 'La calificacion se ha editado correctamente.' }
+        format.html { redirect_to @calificacion, notice: 'La calificación se ha editado correctamente.' }
         format.json { render :show, status: :ok, location: @calificacion }
       else
         format.html { render :edit }
@@ -86,14 +84,12 @@ class CalificacionsController < ApplicationController
     control_usuario
     @calificacion.destroy
     respond_to do |format|
-      format.html { redirect_to calificacions_url, notice: 'La calificacion se ha eliminado correctamente.' }
+      format.html { redirect_to calificacions_url, notice: 'La calificación se ha eliminado correctamente.' }
       format.json { head :no_content }
     end
 
   end
-  # def calificando
-  #   byebug
-  # end
+  
 
   # control de tipo de usuario logueado
   def control_usuario

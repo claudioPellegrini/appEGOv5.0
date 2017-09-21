@@ -17,8 +17,7 @@ class MenusController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf{render template: 'menus/menudeldia.pdf.erb', pdf: 'menudeldia'} #, :save_to_file => Rails.root.join('public', "Menudeldia.pdf"),
-       #:save_only    => true, type: 'application/pdf' }
+      format.pdf{render template: 'menus/menudeldia.pdf.erb', pdf: 'menudeldia'} 
        
     end
   end
@@ -63,7 +62,7 @@ class MenusController < ApplicationController
       respond_to do |format|
         if @menu.save
           crear_pdfs_menu          
-          format.html { redirect_to @menu, notice: 'El Menu se ha creado correctamente .' }
+          format.html { redirect_to @menu, notice: 'El Menú se ha creado correctamente .' }
           format.json { render :show, status: :created, location: @menu }
         else
           format.html { render :new }
@@ -83,7 +82,7 @@ class MenusController < ApplicationController
       @menu.productos = params[:productos]
       if @menu.update(menu_params)
           crear_pdfs_menu
-        format.html { redirect_to @menu, notice: 'El Menu se ha editado correctamente.' }
+        format.html { redirect_to @menu, notice: 'El Menú se ha editado correctamente.' }
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit }
@@ -98,7 +97,7 @@ class MenusController < ApplicationController
     control_usuario
     @menu.destroy
     respond_to do |format|
-      format.html { redirect_to menus_url, notice: 'El Menu se ha eliminado correctamente.' }
+      format.html { redirect_to menus_url, notice: 'El Menú se ha eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

@@ -63,11 +63,7 @@ class ProductosController < ApplicationController
   # DELETE /productos/1.json
   def destroy
     control_usuario
-    # @producto.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to productos_url, notice: 'Producto was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
+    
   end
 
 

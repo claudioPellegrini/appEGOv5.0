@@ -5,8 +5,8 @@ belongs_to :cuenta, optional: true
 
 	validates :ci, presence: {message: "^Debe ingresar su cedula de identidad"}
 	validates :ci, length: { in: 7..8, message: "^Debe ingresar 7 u 8 digitos para la CI"}
-	validates :ci, uniqueness: {message: "^Esa cedula ya se encuentra registrada "}
-	validates :ci, numericality: { greater_than: 0, message: "^Debe ingresar un numero valido"}
+	validates :ci, uniqueness: {message: "^Esa cédula ya se encuentra registrada "}
+	validates :ci, numericality: { greater_than: 0, message: "^Debe ingresar un número válido"}
 
 
 	

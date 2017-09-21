@@ -8,22 +8,14 @@ class GnsController < ApplicationController
 		$fechaFinal = nil
 		$empresa = ""
 		$empresa_nombre = nil
-		# $fechaInicial = Date.civil(params[:consultaConsumos][:"fechaIni(1i)"].to_i, params[:consultaConsumos][:"fechaIni(2i)"].to_i, params[:consultaConsumos][:"fechaIni(3i)"].to_i)
-		# $fechaFinal = Date.civil(params[:consultaConsumos][:"fechaFin(1i)"].to_i, params[:consultaConsumos][:"fechaFin(2i)"].to_i, params[:consultaConsumos][:"fechaFin(3i)"].to_i)
 		
 		if valid_date?
 			if $fechaFinal >= $fechaInicial
 				$empresa = params[:consultaConsumos][:"empresa_id"]
 				if $empresa != ""					
 					$empresa_nombre = Empresa.find($empresa).nombre
-					# redirect_back(fallback_location: root_path)
-					# return
-
-					redirect_to "/gns/consultaConsumos.xlsx"
-
-					# return
-					# redirect_to  "welcome/index"
 					
+					redirect_to "/gns/consultaConsumos.xlsx"
 					
 				else
 					flash[:error] = "Debe seleccionar una empresa"
@@ -42,15 +34,13 @@ class GnsController < ApplicationController
 
 	# Exporta a un archivo de excel los consumos realizados en un periodo de tiempo dado, la consulta se hace por medio de una sentencia sql
 	def consultaConsumos
-		# @consumos = Compra.where('fecha BETWEEN ? AND ?', $fechaInicial, $fechaFinal)
 		
-		#@consumos = Usuario.find_by_sql(["select nombres, apellidos, sum(Compras.valor_final_ticket)as total, count(distinct Compras.fecha)as consumos from Compras, Usuarios where Usuarios.cuenta_id = Compras.cuentum_id and Compras.fecha IN (SELECT fecha FROM Compras WHERE fecha BETWEEN ? AND ?)group by Usuarios.nombres, Usuarios.apellidos",$fechaInicial, $fechaFinal])
 		@consumos = Usuario.find_by_sql(["select nombres, apellidos, sum(Compras.valor_final_ticket)as total, count(distinct Compras.fecha)as consumos from Compras, Usuarios where Usuarios.cuenta_id = Compras.cuentum_id and Usuarios.empresa_id = ? and Compras.fecha IN (SELECT fecha FROM Compras WHERE fecha BETWEEN ? AND ?)group by Usuarios.nombres, Usuarios.apellidos", $empresa, $fechaInicial, $fechaFinal])
 		respond_to do |format| 
        		format.xlsx {render xlsx: 'consultaConsumos',filename: "consultaConsumos.xlsx"}
        		
     	end    	
-    	# redirect_to "welcome/index"
+    	
     end
 
     # control de tipo de usuario logueado

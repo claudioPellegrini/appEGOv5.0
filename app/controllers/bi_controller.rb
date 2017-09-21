@@ -8,8 +8,8 @@ class BiController < ApplicationController
         control_usuario
         max = 0
         fechas = Array.new
-        data_array_1 = Array.new#[1, 4, 3, 5, 9] 
-        #data_array_2 = [ 0, 0, 0, 0, 0] 
+        data_array_1 = Array.new
+        
         consultaPorDia = Compra.find_by_sql("SELECT   COUNT (*) AS contador, fecha FROM compras, compra_productos WHERE compras.id = compra_productos.compra_id GROUP BY fecha ORDER BY fecha ASC;")
         consultaPorDia.each do |cpd|
             data_array_1.push(cpd.contador)
@@ -23,7 +23,7 @@ class BiController < ApplicationController
             :bg => 'd5ebf2',
             :grouped => true,
             :legend => ['Consumos'],
-            :data => [data_array_1],#, data_array_2],            
+            :data => [data_array_1],           
             :legend_position => 'top',
             :axis_with_labels => [['x'], ['y'], ['t']], 
             :axis_range => [nil, [0,max,10]],
@@ -48,10 +48,10 @@ class BiController < ApplicationController
         @pastel=Gchart.pie( 
             :size   => '600x400',
             :title  => " ",
-            :legend => nombres,#['firefox', 'chrome', 'IE', 'Safari', 'Opera'],
+            :legend => nombres,
             :labels => cantidades,
             :custom => "chco=FE2E64,9AFE2E",
-            :data   => cantidades#[120, 45, 25, 55, 20, 90]
+            :data   => cantidades
             )
     end
 
@@ -61,8 +61,8 @@ class BiController < ApplicationController
         control_usuario
         max = 0
         meses = Array.new
-        data_array_1 = Array.new#[1, 4, 3, 5, 9] 
-        #data_array_2 = [ 0, 0, 0, 0, 0] 
+        data_array_1 = Array.new 
+        
         consultaPorMes = Compra.find_by_sql("SELECT COUNT (*) AS contador, date_part('month',fecha) as mes FROM compras, compra_productos WHERE compras.id = compra_productos.compra_id GROUP BY date_part('month',fecha) ORDER BY date_part('month',fecha) ASC;")
         consultaPorMes.each do |cpm|
             data_array_1.push(cpm.contador)
@@ -76,7 +76,7 @@ class BiController < ApplicationController
             :bg => 'd5ebf2',
             :grouped => true,
             :legend => ['Consumos'],
-            :data => [data_array_1],#, data_array_2],            
+            :data => [data_array_1],            
             :legend_position => 'top',
             :axis_with_labels => [['x'], ['y'], ['t']],             
             :axis_range => [nil, [0,max,100]],
@@ -128,10 +128,10 @@ class BiController < ApplicationController
         @bebidasPie=Gchart.pie( 
             :size   => '600x400',
             :title  => " ",
-            :legend => nombres,#['firefox', 'chrome', 'IE', 'Safari', 'Opera'],
+            :legend => nombres,
             :labels => cantidades,
             :custom => "chco=FE2E64,9AFE2E",
-            :data   => cantidades#[120, 45, 25, 55, 20, 90]
+            :data   => cantidades
             )
     end
 

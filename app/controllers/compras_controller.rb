@@ -86,7 +86,7 @@ class ComprasController < ApplicationController
     franjaActual = Franja.last
     usu = Usuario.find_by(cuenta_id: current_cuentum.id) 
     if usu.salario == 0 || usu.salario == nil
-      flash[:error] = "Aun no se ha cargado su salario al sistema"
+      flash[:error] = "Aún no se ha cargado su salario al sistema"
       redirect_to :action => "index"  
     end
     if menu == nil
@@ -120,15 +120,8 @@ class ComprasController < ApplicationController
   # GET /compras/1/edit
   def edit
     control_pedidos 
-     @div_tiempo_pedidos = false   
-    # @tipos =Tipo.all
-    # @menus = Menu.all
-    # @bebidas =Bebida.all
-    # @menus.each do |menu|
-    #   if menu.fecha.to_date == Time.now.to_date
-    #     @productos = menu.productos.all
-    #   end  
-    # end 
+    @div_tiempo_pedidos = false   
+    
     @usuario = Usuario.find_by(cuenta_id: @compra.cuentum.id)
     @bebidas = Bebida.all
     @productos = Producto.all
@@ -152,8 +145,7 @@ class ComprasController < ApplicationController
       end
 
     @tipos =Tipo.all
-    # @compra.estado = "FINALIZADO"
-    # @compra.save
+    
   end
 
   # POST /compras
@@ -185,19 +177,13 @@ class ComprasController < ApplicationController
     else
       @compra.valor_final_ticket = sumarPrecioBebidas(params[:bebidas]) + valorTicket
 
-      # @compra.subscribe(PedidoController.new)
-
-      # @compra.on(:compra_create_succesfull) { redirect_to compras_path }
-      # @compra.on(:compra_create_failed) { render :action => :new }
-      # @compra.commit
-
       respond_to do |format|
         if @compra.save
-          # @compra.on(:compra_creation_successful)
+          
           format.html { redirect_to @compra, notice: 'La Compra fue creada correctamente.' }
           format.json { render :show, status: :created, location: @compra }
         else
-          # @compra.on(:compra_creation_failed)
+          
           format.html { render :new }
           format.json { render json: @compra.errors, status: :unprocessable_entity }
         end
@@ -210,28 +196,7 @@ class ComprasController < ApplicationController
   def update
     @compra.update(compra_params)
     redirect_to compras_path
-    # @tipos =Tipo.all
-    # @menus = Menu.all
-    # @bebidas =Bebida.all
-    # @menus.each do |menu|
-    #   if menu.fecha.to_date == Time.now.to_date
-    #     @productos = menu.productos.all
-    #   end  
-    # end 
-    # respond_to do |format|
-    #   if @compra.update(compra_params)
-    #     format.html { redirect_to @compra, notice: 'Compra actualizada correctamente.' }
-    #     format.json { render :show, status: :ok, location: @compra }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @compra.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
-    # @compra.subscribe(Notifier.new)
-    # @compra.on(:compra_update_successful) { redirect_to compras_path }
-    # @compra.on(:compra_update_failed) { render :action => :edit }
-    # @compra.commit(params[:compra])
+    
   end
 
   # DELETE /compras/1
@@ -264,7 +229,7 @@ class ComprasController < ApplicationController
   def valorTicket    
     usuario = Usuario.find_by(cuenta_id: current_cuentum.id)
     menu = Menu.find_by(fecha: Time.now)
-    # byebug
+    
     franjaActual = Franja.last
     if menu == nil
       return 0
@@ -299,7 +264,7 @@ class ComprasController < ApplicationController
   end
 
   def pedido
-    byebug
+    
     @compra.estado = "FINALIZADO"
   end
 
