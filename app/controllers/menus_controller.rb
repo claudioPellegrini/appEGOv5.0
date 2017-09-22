@@ -137,7 +137,7 @@ class MenusController < ApplicationController
     rescue Exception => e
       #e.message
       flash[:error] = "Un erro evito que se enviaran los correos, por favor contactar al administrador!!"
-       redirect_to :action => "index"
+       
     end
   end
 
