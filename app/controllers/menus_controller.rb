@@ -132,8 +132,11 @@ class MenusController < ApplicationController
           @correos = c.email + @coma
           @destinatarios << @correos
     end
-    
-    CuentaMailer.mailing(@destinatarios, @menu).deliver_now
+    begin
+      CuentaMailer.mailing(@destinatarios, @menu).deliver_now
+    rescue
+      format.html { redirect_to @menu, notice: 'Menú creado correctamente, pero ocurrio un error en el envio de los correos, por favor contacte a su proveedor SMTP .' }
+    end
   end
 
 
