@@ -134,8 +134,9 @@ class MenusController < ApplicationController
     end
     begin
       CuentaMailer.mailing(@destinatarios, @menu).deliver_now
-    rescue
-      format.html { redirect_to @menu, notice: 'Menú creado correctamente, pero ocurrio un error en el envio de los correos, por favor contacte a su proveedor SMTP .' }
+    rescue Exception => e
+      e.message
+      #format.html { redirect_to @menu, notice: 'Menú creado correctamente, pero ocurrio un error en el envio de los correos, por favor contacte a su proveedor SMTP .' }
     end
   end
 
