@@ -136,8 +136,8 @@ class MenusController < ApplicationController
       CuentaMailer.mailing(@destinatarios, @menu).deliver_now
     rescue Exception => e
       #e.message
-      flash[:error] = "Un erro evito que se enviaran los correos, por favor contactar al administrador!!"
-       
+      flash[:error] = "Un error en el servicio SMTP evitó que se enviaran los correos, por favor contactar al administrador!!"
+
     end
   end
 
